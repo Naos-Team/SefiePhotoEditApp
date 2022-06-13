@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/customexitshape"
+    android:keepScreenOn="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="Delete Alert!"
+                android:textColor="@color/colorHeader"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="Do You Want To Delete This File ?"
+            android:textColor="@color/colorHeader"
+            android:textSize="15dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center">
+
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                android:id="@+id/txt_no"
+                android:layout_width="100dp"
+                android:layout_height="36dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/custombutton"
+                android:gravity="center"
+                android:paddingBottom="1dp"
+                android:text="No"
+                android:textColor="@color/colorWhite"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                android:id="@+id/txt_yes"
+                android:layout_width="100dp"
+                android:layout_height="36dp"
+                android:background="@drawable/custombutton"
+                android:gravity="center"
+                android:paddingBottom="1dp"
+                android:text="Yes"
+                android:textColor="@color/colorWhite"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

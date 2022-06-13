@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:layout_width="wrap_content" android:layout_height="wrap_content">
+    <RelativeLayout android:id="@+id/layoutRoot" android:layout_width="match_parent" android:layout_height="match_parent">
+        <androidx.cardview.widget.CardView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" app:cardCornerRadius="5dp">
+            <ImageView android:id="@+id/imageItem" android:background="@drawable/piclist_selector_item" android:padding="1dp" android:layout_width="80dp" android:layout_height="80dp" android:scaleType="centerCrop" android:layout_centerInParent="true"/>
+            <ImageView android:id="@+id/check" android:padding="18dp" android:visibility="gone" android:layout_width="80dp" android:layout_height="80dp" android:src="@drawable/img_tick" android:scaleType="centerCrop" android:layout_centerInParent="true"/>
+            <ImageView android:id="@+id/ivPlay" android:padding="20dp" android:visibility="gone" android:layout_width="80dp" android:layout_height="80dp" android:src="@drawable/img_videoplay" android:scaleType="centerCrop" android:layout_centerInParent="true"/>
+            <ImageView android:id="@+id/click" android:background="@drawable/piclist_selector_item" android:layout_width="80dp" android:layout_height="80dp" android:layout_centerInParent="true"/>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sweet.selfiecameraphotoeditor">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <application
+        android:name="com.sweet.selfiecameraphotoeditor.common.mApplication"
+        android:allowBackup="true"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_app_unit_id"/>
+
+        <activity
+            android:name="com.sweet.selfiecameraphotoeditor.activities.SplashScreenActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.sweet.selfiecameraphotoeditor.activities.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sweet.selfiecameraphotoeditor.activities.SweetCameraActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sweet.selfiecameraphotoeditor.activities.PhotoEditorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sweet.selfiecameraphotoeditor.activities.TextActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sweet.selfiecameraphotoeditor.activities.PhotoSelectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sweet.selfiecameraphotoeditor.activities.PhotoCollageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sweet.selfiecameraphotoeditor.activities.PhotoShareActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sweet.selfiecameraphotoeditor.activities.CameraStartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sweet.selfiecameraphotoeditor.activities.CameraPhotoSaveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sweet.selfiecameraphotoeditor.activities.CameraStickerPhotoSaveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sweet.selfiecameraphotoeditor.activities.CameraPhotoShareActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sweet.selfiecameraphotoeditor.activities.MYCreationActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.sweet.selfiecameraphotoeditor.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+
+        <activity
+            android:name="com.karumi.dexter.DexterActivity"
+            android:theme="@style/Dexter.Internal.Theme.Transparent" />
+
+
+        <activity android:name="com.sweet.selfiecameraphotoeditor.editdetection.omoshiroilib.ui.CameraPreviewActivity" />
+
+
+        <activity android:name="com.sweet.selfiecameraphotoeditor.editdetection.omoshiroilib.ui.DecorateActivity" />
+
+
+        <activity
+            android:name="com.sweet.selfiecameraphotoeditor.editdetection.omoshiroilib.ui.EditActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name="com.sweet.selfiecameraphotoeditor.editdetection.omoshiroilib.ui.SplashActivity" />
+
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <meta-data
+            android:name="com.android.dynamic.apk.fused.modules"
+            android:value="base" />
+
+
+    </application>
+</manifest>

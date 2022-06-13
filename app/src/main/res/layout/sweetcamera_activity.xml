@@ -1,0 +1,2062 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.opengl.GLSurfaceView
+        android:id="@+id/camerasurfaceview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.sweet.selfiecameraphotoeditor.cameraview.CameraSourcePreview
+        android:id="@+id/preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:visibility="gone">
+
+        <com.sweet.selfiecameraphotoeditor.activities.GraphicOverlay
+            android:id="@+id/faceOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+    </com.sweet.selfiecameraphotoeditor.cameraview.CameraSourcePreview>
+
+    <LinearLayout
+        android:id="@+id/topcontrol_layout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#4d000000"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/btn_filter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/img_subsaturation" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/btn_gradient"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/img_subgradient" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/btn_blander"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/img_subblander" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/filter_list"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_marginBottom="5dp"
+        android:scrollbars="none"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_no"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_no" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Original"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_1"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_1" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Sunrise"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_2"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_2" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Sunset"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_3"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_3" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Whitecat"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_4"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_4" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Redcat"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_5"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_5" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="2dp"
+                    android:text="Romance"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_6"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_6" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="WhiteSkin"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_7"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_7" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Healthy"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_8"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_8" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Sweety"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_9"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_9" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Warm"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_10"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_10" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Antique"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_11"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_11" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Nostalgia"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_12"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_12" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Calm"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_13"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_13" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Latte"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_14"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_14" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Tender"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_15"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_15" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Cool"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_16"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_16" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Emerald"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_17"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_17" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Evergreen"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_18"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_18" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Sakura"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_19"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_19" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Lookup"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_20"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_20" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Grayscale"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_21"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_21" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Hue"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_22"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_22" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Mono"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/img_filter_23"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:onClick="filter"
+                    android:src="@drawable/img_filter_23" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/img_filterselect_23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:onClick="filter"
+                        android:padding="10dp"
+                        android:src="@drawable/img_filterselect"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Invert"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:id="@+id/sticker_list"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:scrollbars="none"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/img_sticker_1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_01" />
+
+            <ImageView
+                android:id="@+id/img_sticker_2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_02" />
+
+            <ImageView
+                android:id="@+id/img_sticker_3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_03" />
+
+            <ImageView
+                android:id="@+id/img_sticker_4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_04" />
+
+            <ImageView
+                android:id="@+id/img_sticker_5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_05" />
+
+            <ImageView
+                android:id="@+id/img_sticker_6"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_06" />
+
+            <ImageView
+                android:id="@+id/img_sticker_7"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_07" />
+
+            <ImageView
+                android:id="@+id/img_sticker_8"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_08" />
+
+            <ImageView
+                android:id="@+id/img_sticker_9"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_09" />
+
+            <ImageView
+                android:id="@+id/img_sticker_10"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_10" />
+
+            <ImageView
+                android:id="@+id/img_sticker_11"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_11" />
+
+            <ImageView
+                android:id="@+id/img_sticker_12"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_12" />
+
+            <ImageView
+                android:id="@+id/img_sticker_13"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_13" />
+
+            <ImageView
+                android:id="@+id/img_sticker_14"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_14" />
+
+            <ImageView
+                android:id="@+id/img_sticker_15"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_15" />
+
+            <ImageView
+                android:id="@+id/img_sticker_16"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_16" />
+
+            <ImageView
+                android:id="@+id/img_sticker_17"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_17" />
+
+            <ImageView
+                android:id="@+id/img_sticker_18"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_18" />
+
+            <ImageView
+                android:id="@+id/img_sticker_19"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_19" />
+
+            <ImageView
+                android:id="@+id/img_sticker_20"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_20" />
+
+            <ImageView
+                android:id="@+id/img_sticker_21"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_21" />
+
+            <ImageView
+                android:id="@+id/img_sticker_22"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_22" />
+
+            <ImageView
+                android:id="@+id/img_sticker_23"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_23" />
+
+            <ImageView
+                android:id="@+id/img_sticker_24"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_24" />
+
+            <ImageView
+                android:id="@+id/img_sticker_25"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_25" />
+
+            <ImageView
+                android:id="@+id/img_sticker_26"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_26" />
+
+            <ImageView
+                android:id="@+id/img_sticker_27"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_27" />
+
+            <ImageView
+                android:id="@+id/img_sticker_28"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_28" />
+
+            <ImageView
+                android:id="@+id/img_sticker_29"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_29" />
+
+            <ImageView
+                android:id="@+id/img_sticker_30"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_30" />
+
+            <ImageView
+                android:id="@+id/img_sticker_31"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_31" />
+
+            <ImageView
+                android:id="@+id/img_sticker_32"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_32" />
+
+            <ImageView
+                android:id="@+id/img_sticker_33"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_33" />
+
+            <ImageView
+                android:id="@+id/img_sticker_34"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_34" />
+
+            <ImageView
+                android:id="@+id/img_sticker_35"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_35" />
+
+            <ImageView
+                android:id="@+id/img_sticker_36"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_36" />
+
+            <ImageView
+                android:id="@+id/img_sticker_37"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_37" />
+
+            <ImageView
+                android:id="@+id/img_sticker_38"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_38" />
+
+            <ImageView
+                android:id="@+id/img_sticker_39"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_39" />
+
+            <ImageView
+                android:id="@+id/img_sticker_40"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_40" />
+
+            <ImageView
+                android:id="@+id/img_sticker_41"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_41" />
+
+            <ImageView
+                android:id="@+id/img_sticker_42"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_42" />
+
+            <ImageView
+                android:id="@+id/img_sticker_43"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_43" />
+
+            <ImageView
+                android:id="@+id/img_sticker_44"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_44" />
+
+            <ImageView
+                android:id="@+id/img_sticker_45"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_45" />
+
+            <ImageView
+                android:id="@+id/img_sticker_46"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_46" />
+
+            <ImageView
+                android:id="@+id/img_sticker_47"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_47" />
+
+            <ImageView
+                android:id="@+id/img_sticker_48"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_48" />
+
+            <ImageView
+                android:id="@+id/img_sticker_49"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_49" />
+
+            <ImageView
+                android:id="@+id/img_sticker_50"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_50" />
+
+            <ImageView
+                android:id="@+id/img_sticker_51"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_51" />
+
+            <ImageView
+                android:id="@+id/img_sticker_52"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:background="#00ff0088"
+                android:onClick="facefilter"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_sticker_52" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:id="@+id/gradient_list"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_marginBottom="5dp"
+        android:scrollbars="none"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_gradient_no"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="gradient"
+                android:src="@drawable/img_subnofilter" />
+
+            <ImageView
+                android:id="@+id/img_gradient_1"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="gradient"
+                android:src="@drawable/img_gradientthumb_01" />
+
+            <ImageView
+                android:id="@+id/img_gradient_2"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="gradient"
+                android:src="@drawable/img_gradientthumb_02" />
+
+            <ImageView
+                android:id="@+id/img_gradient_3"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="gradient"
+                android:src="@drawable/img_gradientthumb_03" />
+
+            <ImageView
+                android:id="@+id/img_gradient_4"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="gradient"
+                android:src="@drawable/img_gradientthumb_04" />
+
+            <ImageView
+                android:id="@+id/img_gradient_5"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="gradient"
+                android:src="@drawable/img_gradientthumb_05" />
+
+            <ImageView
+                android:id="@+id/img_gradient_6"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="gradient"
+                android:src="@drawable/img_gradientthumb_06" />
+
+            <ImageView
+                android:id="@+id/img_gradient_7"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="gradient"
+                android:src="@drawable/img_gradientthumb_07" />
+
+            <ImageView
+                android:id="@+id/img_gradient_8"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="gradient"
+                android:src="@drawable/img_gradientthumb_08" />
+
+            <ImageView
+                android:id="@+id/img_gradient_9"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="gradient"
+                android:src="@drawable/img_gradientthumb_09" />
+
+            <ImageView
+                android:id="@+id/img_gradient_10"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="gradient"
+                android:src="@drawable/img_gradientthumb_10" />
+
+            <ImageView
+                android:id="@+id/img_gradient_11"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="gradient"
+                android:src="@drawable/img_gradientthumb_11" />
+
+            <ImageView
+                android:id="@+id/img_gradient_12"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="gradient"
+                android:src="@drawable/img_gradientthumb_12" />
+
+            <ImageView
+                android:id="@+id/img_gradient_13"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="gradient"
+                android:src="@drawable/img_gradientthumb_13" />
+
+            <ImageView
+                android:id="@+id/img_gradient_14"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="gradient"
+                android:src="@drawable/img_gradientthumb_14" />
+
+            <ImageView
+                android:id="@+id/img_gradient_15"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="gradient"
+                android:src="@drawable/img_gradientthumb_15" />
+
+            <ImageView
+                android:id="@+id/img_gradient_16"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="gradient"
+                android:src="@drawable/img_gradientthumb_16" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:id="@+id/blender_list"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_marginBottom="5dp"
+        android:scrollbars="none"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_blender_no"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="blander"
+                android:src="@drawable/img_subnofilter" />
+
+            <ImageView
+                android:id="@+id/img_blender_1"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="blander"
+                android:src="@drawable/img_blenderthumb_01" />
+
+            <ImageView
+                android:id="@+id/img_blender_2"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="blander"
+                android:src="@drawable/img_blenderthumb_02" />
+
+            <ImageView
+                android:id="@+id/img_blender_3"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="blander"
+                android:src="@drawable/img_blenderthumb_03" />
+
+            <ImageView
+                android:id="@+id/img_blender_4"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="blander"
+                android:src="@drawable/img_blenderthumb_04" />
+
+            <ImageView
+                android:id="@+id/img_blender_5"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="blander"
+                android:src="@drawable/img_blenderthumb_05" />
+
+            <ImageView
+                android:id="@+id/img_blender_6"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="blander"
+                android:src="@drawable/img_blenderthumb_06" />
+
+            <ImageView
+                android:id="@+id/img_blender_7"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="blander"
+                android:src="@drawable/img_blenderthumb_07" />
+
+            <ImageView
+                android:id="@+id/img_blender_8"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="blander"
+                android:src="@drawable/img_blenderthumb_08" />
+
+            <ImageView
+                android:id="@+id/img_blender_9"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="blander"
+                android:src="@drawable/img_blenderthumb_09" />
+
+            <ImageView
+                android:id="@+id/img_blender_10"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="blander"
+                android:src="@drawable/img_blenderthumb_10" />
+
+            <ImageView
+                android:id="@+id/img_blender_11"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="blander"
+                android:src="@drawable/img_blenderthumb_11" />
+
+            <ImageView
+                android:id="@+id/img_blender_12"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="blander"
+                android:src="@drawable/img_blenderthumb_12" />
+
+            <ImageView
+                android:id="@+id/img_blender_13"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="blander"
+                android:src="@drawable/img_blenderthumb_13" />
+
+            <ImageView
+                android:id="@+id/img_blender_14"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="blander"
+                android:src="@drawable/img_blenderthumb_14" />
+
+            <ImageView
+                android:id="@+id/img_blender_15"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="blander"
+                android:src="@drawable/img_blenderthumb_15" />
+
+            <ImageView
+                android:id="@+id/img_blender_16"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="blander"
+                android:src="@drawable/img_blenderthumb_16" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <RelativeLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/btn_capture"
+            android:layout_width="@dimen/_48sdp"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/img_captureimage" />
+
+        <RelativeLayout
+            android:id="@+id/btn_cameraswitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/img_switchcamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/img_subcameraswitch" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/photosaving_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/custom_photosavingbg"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="10dp"
+        android:visibility="gone">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="splashloading.json"
+            app:lottie_loop="true" />
+
+        <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Photo Saving"
+            android:textColor="@color/colorWhite"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+</RelativeLayout>

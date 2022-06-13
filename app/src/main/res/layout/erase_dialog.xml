@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:background="@drawable/customexitshape" android:layout_width="match_parent" android:layout_height="wrap_content" android:keepScreenOn="true">
+    <LinearLayout android:orientation="vertical" android:paddingLeft="5dp" android:paddingRight="5dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.sweet.selfiecameraphotoeditor.common.CustomTextView android:textSize="15dp" android:textColor="@color/colorHeader" android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="Do You Want To Erase All Paint ?"/>
+        <LinearLayout android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:layout_marginBottom="10dp" android:layout_centerInParent="true">
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView android:textSize="13dp" android:textStyle="bold" android:textColor="@color/colorWhite" android:gravity="center" android:id="@+id/txt_no" android:background="@drawable/custombutton" android:layout_width="100dp" android:layout_height="32dp" android:layout_marginRight="30dp" android:text="No"/>
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView android:textSize="13dp" android:textStyle="bold" android:textColor="@color/colorWhite" android:gravity="center" android:id="@+id/txt_yes" android:background="@drawable/custombutton" android:layout_width="100dp" android:layout_height="32dp" android:text="Yes"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

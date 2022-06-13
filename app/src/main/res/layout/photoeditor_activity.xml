@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <RelativeLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_44sdp"
+        android:background="@color/colorBlack">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="@dimen/_44sdp"
+            android:layout_height="@dimen/_44sdp"
+            android:padding="@dimen/_15sdp"
+            android:src="@drawable/img_back" />
+
+        <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingTop="@dimen/_2sdp"
+            android:text="Photo Editor"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_12sdp" />
+
+        <ImageView
+            android:id="@+id/img_save"
+            android:layout_width="@dimen/_44sdp"
+            android:layout_height="@dimen/_44sdp"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/_13sdp"
+            android:src="@drawable/img_save" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/admobBanner"
+        android:layout_below="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="@drawable/customadbg"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="1dp">
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/bannerad">
+        </com.google.android.gms.ads.AdView>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/Rl_Layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/admobBanner"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="150dp">
+
+        <it.chengdazhi.styleimageview.StyleImageView
+            android:id="@+id/ivimg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:adjustViewBounds="true" />
+
+
+        <ImageView
+            android:id="@+id/imageoverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:adjustViewBounds="true" />
+
+        <com.sweet.selfiecameraphotoeditor.common.DrawingView
+            android:id="@+id/main_drawing_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00000000"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/ivDrawImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/seekbaropacitylayout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_above="@+id/effectrecycler"
+        android:background="@color/colorBlack"
+        android:visibility="gone">
+
+        <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+            android:id="@+id/txtopacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:text="Opacity"
+            android:textColor="@color/colorWhite"
+            android:textSize="10dp" />
+
+        <SeekBar
+            android:id="@+id/overlayseekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/txtremoveoverlay"
+            android:layout_toRightOf="@+id/txtopacity"
+            android:max="100"
+            android:maxHeight="1dp"
+            android:minHeight="1dp"
+            android:progressDrawable="@drawable/seekbar_progress"
+            android:thumb="@drawable/seekbar_control" />
+
+        <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+            android:id="@+id/txtremoveoverlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:text="Remove"
+            android:textColor="@color/colorWhite"
+            android:textSize="10dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/stickerclose"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/_1sdp"
+        android:background="@color/colorBlack"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:src="@drawable/img_keyboardclose" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/stickerrecycler"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_marginBottom="@dimen/_1sdp"
+        android:layout_toLeftOf="@+id/stickerclose"
+        android:background="@color/colorBlack"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/effectrecycler"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_marginBottom="@dimen/_1sdp"
+        android:background="@color/colorBlack"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/seekbarsaturationlayout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_marginBottom="@dimen/_1sdp"
+        android:background="@color/colorBlack"
+        android:visibility="gone">
+
+        <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+            android:id="@+id/txtsaturation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:text="Saturation"
+            android:textColor="@color/colorWhite"
+            android:textSize="10dp" />
+
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:id="@+id/seekbarSaturation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/seekbarsaturationclose"
+            android:layout_toRightOf="@+id/txtsaturation"
+            app:dsb_indicatorColor="#ffffff"
+            app:dsb_indicatorPopupEnabled="false"
+            app:dsb_max="200"
+            app:dsb_min="100"
+            app:dsb_progressColor="#ffffff"
+            app:dsb_scrubberHeight="1dp"
+            app:dsb_thumbSize="12dp"
+            app:dsb_trackColor="#c2c2c2"
+            app:dsb_trackHeight="2dp"
+            app:dsb_value="130" />
+
+        <RelativeLayout
+            android:id="@+id/seekbarsaturationclose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="9dp"
+                android:src="@drawable/img_keyboardclose" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/seekbarcontrastlayout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_marginBottom="@dimen/_1sdp"
+        android:background="@color/colorBlack"
+        android:visibility="gone">
+
+        <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+            android:id="@+id/txtcontrast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:text="Contrast"
+            android:textColor="@color/colorWhite"
+            android:textSize="10dp" />
+
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:id="@+id/seekbarContrast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/seekbarcontrastclose"
+            android:layout_toRightOf="@+id/txtcontrast"
+            app:dsb_indicatorColor="#ffffff"
+            app:dsb_indicatorPopupEnabled="false"
+            app:dsb_max="200"
+            app:dsb_min="100"
+            app:dsb_progressColor="#ffffff"
+            app:dsb_scrubberHeight="1dp"
+            app:dsb_thumbSize="12dp"
+            app:dsb_trackColor="#c2c2c2"
+            app:dsb_trackHeight="2dp"
+            app:dsb_value="115" />
+
+        <RelativeLayout
+            android:id="@+id/seekbarcontrastclose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="9dp"
+                android:src="@drawable/img_keyboardclose" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/seekbarbrightnesslayout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/_1sdp"
+        android:background="@color/colorBlack"
+        android:visibility="gone">
+
+        <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+            android:id="@+id/txtbright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:text="Brightness"
+            android:textColor="@color/colorWhite"
+            android:textSize="10dp" />
+
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:id="@+id/seekbarBrightness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/seekbarbrightnessclose"
+            android:layout_toRightOf="@+id/txtbright"
+            app:dsb_indicatorColor="#ffffff"
+            app:dsb_indicatorPopupEnabled="false"
+            app:dsb_max="350"
+            app:dsb_min="250"
+            app:dsb_progressColor="#ffffff"
+            app:dsb_scrubberHeight="1dp"
+            app:dsb_thumbSize="12dp"
+            app:dsb_trackColor="#c2c2c2"
+            app:dsb_trackHeight="2dp"
+            app:dsb_value="270" />
+
+        <RelativeLayout
+            android:id="@+id/seekbarbrightnessclose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="9dp"
+                android:src="@drawable/img_keyboardclose" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/seekbarmainopacitylayout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_marginBottom="@dimen/_1sdp"
+        android:background="@color/colorBlack"
+        android:visibility="gone">
+
+        <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+            android:id="@+id/txtmainimgopacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:text="Opacity"
+            android:textColor="@color/colorWhite"
+            android:textSize="10dp" />
+
+        <SeekBar
+            android:id="@+id/overlaymainimgseekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/seekbarmainimgopacityclose"
+            android:layout_toRightOf="@+id/txtmainimgopacity"
+            android:max="100"
+            android:maxHeight="1dp"
+            android:minHeight="1dp"
+            android:progressDrawable="@drawable/seekbar_progress"
+            android:thumb="@drawable/seekbar_control"
+            android:visibility="visible" />
+
+        <RelativeLayout
+            android:id="@+id/seekbarmainimgopacityclose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="9dp"
+                android:src="@drawable/img_keyboardclose" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/seekbardrawingstroke"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_above="@+id/effectrecycler"
+        android:background="@color/colorBlack"
+        android:visibility="gone">
+
+        <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+            android:id="@+id/txtstroke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:text="Stroke"
+            android:textColor="@color/colorWhite"
+            android:textSize="10dp" />
+
+        <SeekBar
+            android:id="@+id/strokeseekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/img_strokeclose"
+            android:layout_toRightOf="@+id/txtstroke"
+            android:maxHeight="1dp"
+            android:minHeight="1dp"
+            android:progress="0"
+            android:progressDrawable="@drawable/seekbar_progress"
+            android:thumb="@drawable/seekbar_control" />
+
+        <ImageView
+            android:id="@+id/img_strokeclose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="9dp"
+            android:src="@drawable/img_keyboardclose" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/rlDrawingView"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_marginBottom="@dimen/_1sdp"
+        android:background="@color/colorBlack"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/btn_drawingcolor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_subtextcolor" />
+
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:text="Color"
+                android:textColor="@color/colorWhite"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_drawingstroke"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_subdrawstroke" />
+
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:text="Stroke"
+                android:textColor="@color/colorWhite"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_drawingundo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_subundo" />
+
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:text="Undo"
+                android:textColor="@color/colorWhite"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_drawingredo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_subredo" />
+
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:text="Redo"
+                android:textColor="@color/colorWhite"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_drawingerase"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_subdrawerase" />
+
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:text="Erase all"
+                android:textColor="@color/colorWhite"
+                android:textSize="10dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/adjust_layout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_marginBottom="@dimen/_1sdp"
+        android:background="@color/colorBlack"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingRight="8dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/btn_rotate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_subrotate" />
+
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:text="Rotate"
+                android:textColor="@color/colorWhite"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_opacity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_subopacity" />
+
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:text="Opacity"
+                android:textColor="@color/colorWhite"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_brightness"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_subbrightness" />
+
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:text="Brightness"
+                android:textColor="@color/colorWhite"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_contrast"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_subcontract" />
+
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:text="Contrast"
+                android:textColor="@color/colorWhite"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_situration"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_subsaturation" />
+
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:text="Situration"
+                android:textColor="@color/colorWhite"
+                android:textSize="10dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorBlack"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginRight="30dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/btn_camera"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:src="@drawable/img_subcamera" />
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Camera"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="11dp" />
+
+                <ImageView
+                    android:id="@+id/camera_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="3dp"
+                    android:src="@drawable/icon_select"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_gallery"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_subgallery" />
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Gallery"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="11dp" />
+
+                <ImageView
+                    android:id="@+id/gallery_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="3dp"
+                    android:src="@drawable/icon_select"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_filter"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:src="@drawable/img_subfilter" />
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Filter"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="11dp" />
+
+                <ImageView
+                    android:id="@+id/filter_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="3dp"
+                    android:src="@drawable/icon_select"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_effect"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_subeffect" />
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Effect"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="11dp" />
+
+                <ImageView
+                    android:id="@+id/effect_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="3dp"
+                    android:src="@drawable/icon_select"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_adjust"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_subadjust" />
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Adjust"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="11dp" />
+
+                <ImageView
+                    android:id="@+id/adjust_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="3dp"
+                    android:src="@drawable/icon_select"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_sticker"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_substicker" />
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Sticker"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="11dp" />
+
+                <ImageView
+                    android:id="@+id/sticker_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="3dp"
+                    android:src="@drawable/icon_select"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_text"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_subtext" />
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Text"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="11dp" />
+
+                <ImageView
+                    android:id="@+id/text_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="3dp"
+                    android:src="@drawable/icon_select"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_paint"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_subpaint" />
+
+                <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Paint"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="11dp" />
+
+                <ImageView
+                    android:id="@+id/paint_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="3dp"
+                    android:src="@drawable/icon_select"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
+</RelativeLayout>

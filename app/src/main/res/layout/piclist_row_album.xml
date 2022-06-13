@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:padding="5dp" android:layout_width="wrap_content" android:layout_height="wrap_content">
+    <RelativeLayout android:id="@+id/layoutRoot" android:layout_width="match_parent" android:layout_height="80dp">
+        <androidx.cardview.widget.CardView android:id="@+id/img_cardview" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="3dp" app:cardCornerRadius="5dp">
+            <ImageView android:layout_gravity="center" android:id="@+id/icon_album" android:layout_width="80dp" android:layout_height="80dp" android:scaleType="centerCrop" android:adjustViewBounds="true" android:layout_alignParentLeft="true" android:layout_centerVertical="true"/>
+        </androidx.cardview.widget.CardView>
+        <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:padding="5dp" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_toLeftOf="@+id/select" android:layout_toRightOf="@+id/img_cardview">
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView android:textSize="13dp" android:textColor="#313131" android:id="@+id/name_album" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Name album" android:maxLines="1" android:singleLine="true"/>
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView android:textSize="10dp" android:textColor="#818181" android:id="@+id/path_album" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="sdcard/photo/0/new" android:maxLines="1"/>
+        </LinearLayout>
+        <CheckBox android:id="@+id/select" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_centerVertical="true"/>
+        <ImageView android:id="@+id/iconNext" android:visibility="gone" android:layout_width="20dp" android:layout_height="20dp" android:layout_alignParentRight="true" android:layout_centerVertical="true"/>
+    </RelativeLayout>
+    <View android:background="#ebebeb" android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginTop="8dp" android:layout_below="@+id/layoutRoot"/>
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Selfie Cam Photo Editor</string>
+
+
+
+
+    <string name="admob_app_unit_id">ca-app-pub-3940256099942544~3347511713</string>
+
+
+    <string name="bannerad">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="g_native">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="g_inr">ca-app-pub-3940256099942544/1033173712</string>
+
+
+
+
+
+    <string name="cancel">Cancel</string>
+    <string name="change">Change</string>
+
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="not_support_media_codec">It seems MediaCodec is not supported on your device or API is below 4.3</string>
+
+    <string name="photo_editor_waring_out_of_memory">Not enough memory. Please remove images or your program will be crashed.!!!</string>
+    <string name="text_images">%1$d Photo Selected</string>
+    <string name="waring_out_of_memory">Not enough memory. Please remove images or your program will be crashed.!!!</string>
+</resources>

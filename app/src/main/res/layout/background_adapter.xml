@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:gravity="center" android:id="@+id/cardfont" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="3dp">
+    <RelativeLayout android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <ImageView android:layout_gravity="center" android:id="@+id/imgShape" android:padding="1dp" android:layout_width="42dp" android:layout_height="42dp" android:src="@drawable/img_placeholder" android:scaleType="centerCrop"/>
+    </RelativeLayout>
+</RelativeLayout>
