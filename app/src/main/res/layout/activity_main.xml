@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -8,152 +8,275 @@
 
     <ImageView
         android:id="@+id/img1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:scaleType="centerCrop"
+        android:src="@mipmap/main_banner5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-        android:src="@mipmap/main_banner"/>
-
-    <androidx.cardview.widget.CardView
-        android:layout_alignParentBottom="true"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        app:cardElevation="@dimen/_10sdp"
-        app:cardBackgroundColor="@color/colorWhite"
-        app:cardCornerRadius="@dimen/_10sdp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <LinearLayout
-            android:id="@+id/lin1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_18sdp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/btn_editor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_13sdp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@mipmap/btn_edit" />
+    <ImageView
+        android:id="@+id/img_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/main_banner"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.97"
+        app:layout_constraintWidth_percent="0.9" />
 
 
-            </LinearLayout>
+    <ImageView
+        android:id="@+id/btn_editor"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@mipmap/btn_edit1"
+        app:layout_constraintBottom_toBottomOf="@+id/img_bg"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@+id/img_bg"
+        app:layout_constraintHeight_percent="0.12"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="@+id/img_bg"
+        app:layout_constraintTop_toTopOf="@+id/img_bg"
+        app:layout_constraintVertical_bias="0.1" />
 
-            <LinearLayout
-                android:id="@+id/btn_camera"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Edit"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintEnd_toEndOf="@+id/btn_editor"
+        app:layout_constraintStart_toStartOf="@+id/btn_editor"
+        app:layout_constraintTop_toBottomOf="@+id/btn_editor" />
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@mipmap/btn_camera" />
+    <ImageView
+        android:id="@+id/btn_camera"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@mipmap/btn_camera2"
+        app:layout_constraintBottom_toBottomOf="@+id/img_bg"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@+id/img_bg"
+        app:layout_constraintHeight_percent="0.12"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="@+id/img_bg"
+        app:layout_constraintTop_toTopOf="@+id/img_bg"
+        app:layout_constraintVertical_bias="0.1" />
 
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Camera"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintEnd_toEndOf="@+id/btn_camera"
+        app:layout_constraintStart_toStartOf="@+id/btn_camera"
+        app:layout_constraintTop_toBottomOf="@+id/btn_camera" />
 
+    <ImageView
+        android:id="@+id/btn_collage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@mipmap/btn_collage1"
+        app:layout_constraintBottom_toBottomOf="@+id/img_bg"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@+id/img_bg"
+        app:layout_constraintHeight_percent="0.12"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="@+id/img_bg"
+        app:layout_constraintTop_toTopOf="@+id/img_bg"
+        app:layout_constraintVertical_bias="0.8" />
 
-            </LinearLayout>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Collage"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintEnd_toEndOf="@+id/btn_collage"
+        app:layout_constraintStart_toStartOf="@+id/btn_collage"
+        app:layout_constraintTop_toBottomOf="@+id/btn_collage" />
 
-            <LinearLayout
-                android:id="@+id/btn_collage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_13sdp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+    <ImageView
+        android:id="@+id/btn_mycreation"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@mipmap/btn_history1"
+        app:layout_constraintBottom_toBottomOf="@+id/img_bg"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@+id/img_bg"
+        app:layout_constraintHeight_percent="0.12"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="@+id/img_bg"
+        app:layout_constraintTop_toTopOf="@+id/img_bg"
+        app:layout_constraintVertical_bias="0.8" />
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@mipmap/btn_collage" />
-
-
-
-            </LinearLayout>
-        </LinearLayout>
-
-            <LinearLayout
-                android:layout_below="@+id/lin1"
-                android:orientation="vertical"
-                android:id="@+id/btn_mycreation"
-                android:layout_width="200dp"
-
-                android:layout_centerInParent="true"
-                android:layout_height="45dp"
-                android:background="@mipmap/btn_mycreate">
-            </LinearLayout>
-
-        <LinearLayout
-            android:layout_below="@+id/btn_mycreation"
-            android:id="@+id/bottomlayout"
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_12sdp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="@dimen/_12sdp"
-            android:layout_marginBottom="@dimen/_15sdp">
-
-
-
-            <ImageView
-                android:layout_centerInParent="true"
-                android:id="@+id/img_shareapp"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginRight="20dp"
-                android:layout_toLeftOf="@+id/img_rateus"
-                android:background="@drawable/customblackbg"
-                android:src="@mipmap/btn_share"
-                />
-
-            <ImageView
-                android:layout_centerInParent="true"
-                android:id="@+id/img_rateus"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_toRightOf="@+id/img_shareapp"
-                android:background="@drawable/a2_grad"
-                android:padding="8dp"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/img_rateus"
-                android:tint="@color/white"/>
-
-            <ImageView
-                android:layout_centerInParent="true"
-                android:id="@+id/img_privacy"
-                android:layout_toRightOf="@+id/img_rateus"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginRight="5dp"
-                android:src="@mipmap/btn_privacy"
-                />
-
-        </LinearLayout>
-
-
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Creation"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintEnd_toEndOf="@+id/btn_mycreation"
+        app:layout_constraintStart_toStartOf="@+id/btn_mycreation"
+        app:layout_constraintTop_toBottomOf="@+id/btn_mycreation" />
 
 
-</RelativeLayout>
+
+
+
+
+
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+<!--        <LinearLayout-->
+<!--            android:id="@+id/lin1"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/_20sdp"-->
+<!--            android:layout_marginBottom="@dimen/_18sdp"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/btn_editor"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="@dimen/_13sdp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:gravity="center"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:src="@mipmap/btn_edit" />-->
+
+
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/btn_camera"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:gravity="center"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:src="@mipmap/btn_camera" />-->
+
+
+
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/btn_collage"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginRight="@dimen/_13sdp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:gravity="center"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:src="@mipmap/btn_collage" />-->
+
+
+
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_below="@+id/lin1"-->
+<!--                android:orientation="vertical"-->
+<!--                android:id="@+id/btn_mycreation"-->
+<!--                android:layout_width="200dp"-->
+
+<!--                android:layout_centerInParent="true"-->
+<!--                android:layout_height="45dp"-->
+<!--                android:background="@mipmap/btn_mycreate">-->
+<!--            </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_below="@+id/btn_mycreation"-->
+<!--            android:id="@+id/bottomlayout"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="@dimen/_12sdp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_marginRight="@dimen/_12sdp"-->
+<!--            android:layout_marginBottom="@dimen/_15sdp">-->
+
+
+
+<!--            <ImageView-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:id="@+id/img_shareapp"-->
+<!--                android:layout_width="@dimen/_40sdp"-->
+<!--                android:layout_height="@dimen/_40sdp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:layout_toLeftOf="@+id/img_rateus"-->
+<!--                android:background="@drawable/customblackbg"-->
+<!--                android:src="@mipmap/btn_share"-->
+<!--                />-->
+
+<!--            <ImageView-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:id="@+id/img_rateus"-->
+<!--                android:layout_width="@dimen/_40sdp"-->
+<!--                android:layout_height="@dimen/_40sdp"-->
+<!--                android:layout_toRightOf="@+id/img_shareapp"-->
+<!--                android:background="@drawable/a2_grad"-->
+<!--                android:padding="8dp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:src="@drawable/img_rateus"-->
+<!--                android:tint="@color/white"/>-->
+
+<!--            <ImageView-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:id="@+id/img_privacy"-->
+<!--                android:layout_toRightOf="@+id/img_rateus"-->
+<!--                android:layout_width="@dimen/_40sdp"-->
+<!--                android:layout_height="@dimen/_40sdp"-->
+<!--                android:layout_marginRight="5dp"-->
+<!--                android:src="@mipmap/btn_privacy"-->
+<!--                />-->
+
+<!--        </LinearLayout>-->
+
+
+<!--        </RelativeLayout>-->
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
