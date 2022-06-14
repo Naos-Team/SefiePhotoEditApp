@@ -123,30 +123,30 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-        this.imgShareapp.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setAction("android.intent.action.SEND");
-                intent.putExtra("android.intent.extra.TEXT", "Capture Your Best Memories With Sweet Selfie Camera : https://play.google.com/store/apps/details?id=com.sweet.selfiecameraphotoeditor");
-                intent.setType("text/plain");
-                MainActivity.this.startActivity(intent);
-            }
-        });
-        this.imgRateus.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                MainActivity mainActivity = MainActivity.this;
-                mainActivity.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://play.google.com/store/apps/details?id=" + MainActivity.this.getApplicationContext().getPackageName())));
-            }
-        });
-
-        this.imgPrivacy.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Uri uri = Uri.parse("https://www.google.com");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-
-            }
-        });
+//        this.imgShareapp.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View view) {
+//                Intent intent = new Intent();
+//                intent.setAction("android.intent.action.SEND");
+//                intent.putExtra("android.intent.extra.TEXT", "Capture Your Best Memories With Sweet Selfie Camera : https://play.google.com/store/apps/details?id=com.sweet.selfiecameraphotoeditor");
+//                intent.setType("text/plain");
+//                MainActivity.this.startActivity(intent);
+//            }
+//        });
+//        this.imgRateus.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View view) {
+//                MainActivity mainActivity = MainActivity.this;
+//                mainActivity.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://play.google.com/store/apps/details?id=" + MainActivity.this.getApplicationContext().getPackageName())));
+//            }
+//        });
+//
+//        this.imgPrivacy.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View view) {
+//                Uri uri = Uri.parse("https://www.google.com");
+//                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//                startActivity(intent);
+//
+//            }
+//        });
     }
 
     @TargetApi(23)
