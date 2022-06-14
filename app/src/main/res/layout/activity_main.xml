@@ -16,17 +16,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="1"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         app:layout_constraintWidth_percent="1" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Naos Photo"
-        android:textColor="@color/black"
+        android:textColor="@color/colorAccent"
         android:textSize="30sp"
         android:textStyle="bold"
         android:fontFamily="@font/poppinsregular"
@@ -210,17 +210,44 @@
         app:layout_constraintStart_toStartOf="@+id/btn_mycreation"
         app:layout_constraintTop_toBottomOf="@+id/btn_mycreation" />
 
+    <ImageView
+        android:id="@+id/img_shareapp_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/bg_ic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.04"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.11" />
+
 
     <ImageView
         android:id="@+id/img_shareapp"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/img_shareapp"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/img_shareapp_bg"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@id/img_shareapp_bg"
+        app:layout_constraintHeight_percent="0.025"
+        app:layout_constraintStart_toStartOf="@id/img_shareapp_bg"
+        app:layout_constraintTop_toTopOf="@id/img_shareapp_bg" />
+
+    <ImageView
+        android:id="@+id/img_rateus_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/bg_ic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.03"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHeight_percent="0.04"
+        app:layout_constraintHorizontal_bias="0.22"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.11" />
@@ -230,11 +257,25 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/img_rateus"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/img_rateus_bg"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@+id/img_rateus_bg"
+        app:layout_constraintHeight_percent="0.025"
+        app:layout_constraintStart_toStartOf="@+id/img_rateus_bg"
+        app:layout_constraintTop_toTopOf="@+id/img_rateus_bg"
+        />
+
+    <ImageView
+        android:id="@+id/img_privacy_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/bg_ic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.03"
-        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintHeight_percent="0.04"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.11" />
@@ -244,14 +285,13 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@mipmap/btn_privacy"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/img_privacy_bg"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.03"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.11" />
+        app:layout_constraintEnd_toEndOf="@id/img_privacy_bg"
+        app:layout_constraintHeight_percent="0.025"
+        app:layout_constraintStart_toStartOf="@id/img_privacy_bg"
+        app:layout_constraintTop_toTopOf="@id/img_privacy_bg" />
 
 
 <!--        <RelativeLayout-->
