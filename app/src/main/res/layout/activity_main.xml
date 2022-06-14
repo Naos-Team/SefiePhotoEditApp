@@ -7,7 +7,6 @@
     android:layout_height="match_parent">
 
 
-
     <ImageView
         android:id="@+id/img11"
         android:layout_width="0dp"
@@ -17,10 +16,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="1"
-        app:layout_constraintWidth_percent="1"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent="1" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -212,40 +212,46 @@
 
 
     <ImageView
+        android:id="@+id/img_shareapp"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/img_shareapp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintHeight_percent="0.03"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.11" />
 
     <ImageView
+        android:id="@+id/img_rateus"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/img_rateus"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintHeight_percent="0.03"
+        app:layout_constraintHorizontal_bias="0.22"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.11" />
 
     <ImageView
+        android:id="@+id/img_privacy"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@mipmap/btn_privacy"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintHeight_percent="0.03"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.11" />
 
 
 <!--        <RelativeLayout-->

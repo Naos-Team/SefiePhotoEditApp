@@ -21,7 +21,7 @@
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/action_item_horizontal.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/action_item_vertical.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/activity_filter.xml" value="0.23229166666666667" />
-        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/activity_main.xml" value="0.152" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/ad_unified.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/ad_unified2.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/add_text_item.xml" value="0.23229166666666667" />
@@ -44,15 +44,6 @@
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/splashscreen_activity.xml" value="0.136" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/sweetcamera_activity.xml" value="0.21822916666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/text_activity.xml" value="0.23229166666666667" />
-        <entry key="..\:/Tuyen/For Work/SelfieCamCollage Photo Editor/app/src/main/res/drawable/bgcollage_bottom_nav.xml" value="0.1855" />
-        <entry key="..\:/Tuyen/For Work/SelfieCamCollage Photo Editor/app/src/main/res/drawable/icon_select.xml" value="0.182" />
-        <entry key="..\:/Tuyen/For Work/SelfieCamCollage Photo Editor/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/Tuyen/For Work/SelfieCamCollage Photo Editor/app/src/main/res/layout/camerastart_activity.xml" value="0.22826086956521738" />
-        <entry key="..\:/Tuyen/For Work/SelfieCamCollage Photo Editor/app/src/main/res/layout/photocollage_activity.xml" value="0.25" />
-        <entry key="..\:/Tuyen/For Work/SelfieCamCollage Photo Editor/app/src/main/res/layout/photoeditor_activity.xml" value="0.11302083333333333" />
-        <entry key="..\:/Tuyen/For Work/SelfieCamCollage Photo Editor/app/src/main/res/layout/photoselect_activity.xml" value="0.22826086956521738" />
-        <entry key="..\:/Tuyen/For Work/SelfieCamCollage Photo Editor/app/src/main/res/layout/sweetcamera_activity.xml" value="0.22826086956521738" />
-        <entry key="..\:/Tuyen/For Work/SelfieCamCollage Photo Editor/app/src/main/res/layout/text_activity.xml" value="0.22826086956521738" />
       </map>
     </option>
   </component>
@@ -61,5 +52,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>
