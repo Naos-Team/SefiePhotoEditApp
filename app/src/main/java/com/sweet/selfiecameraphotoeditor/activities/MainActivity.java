@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 23 && !(ContextCompat.checkSelfPermission(this, "android.permission.READ_EXTERNAL_STORAGE") == 0 && ContextCompat.checkSelfPermission(this, "android.permission.WRITE_EXTERNAL_STORAGE") == 0 && ContextCompat.checkSelfPermission(this, "android.permission.CAMERA") == 0)) {
             getPermission();
         }
-        this.btnCamera = (ImageView) findViewById(R.id.img_bg1);
-        this.btnEditor = (ImageView) findViewById(R.id.img_bg2);
+        this.btnCamera = (ImageView) findViewById(R.id.img_bg2);
+        this.btnEditor = (ImageView) findViewById(R.id.img_bg1);
         this.btnCollage = (ImageView) findViewById(R.id.img_bg3);
         this.btnMycreation = (ImageView) findViewById(R.id.img_bg4);
 //        this.imgShareapp = (ImageView) findViewById(R.id.img_shareapp);

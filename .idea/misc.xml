@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/a2_grad.xml" value="0.1935" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/bg_camera.xml" value="0.182" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/bg_dialog_delete.xml" value="0.1595" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/bg_main.xml" value="0.182" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/bg_splash.xml" value="0.1925" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/border_camera.xml" value="0.182" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/camera_flash_light_selector.xml" value="0.182" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/camera_flash_time_selector.xml" value="0.182" />
@@ -37,12 +39,11 @@
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/dialog_delete.xml" value="0.264" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/dialog_exit.xml" value="0.19010416666666666" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/photocreation_adapter.xml" value="0.176" />
-        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/splashscreen_activity.xml" value="0.2" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/popup_vertical.xml" value="0.23229166666666667" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/progressdialog.xml" value="0.1" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/splashscreen_activity.xml" value="0.136" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/sweetcamera_activity.xml" value="0.21822916666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/text_activity.xml" value="0.23229166666666667" />
-        <entry key="..\:/Tuyen/For Work/SelfieCamCollage Photo Editor/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
-        <entry key="..\:/Tuyen/For Work/SelfieCamCollage Photo Editor/app/src/main/res/layout/camerastart_activity.xml" value="0.22826086956521738" />
-        <entry key="..\:/Tuyen/For Work/SelfieCamCollage Photo Editor/app/src/main/res/layout/sweetcamera_activity.xml" value="0.22826086956521738" />
       </map>
     </option>
   </component>
@@ -51,5 +52,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.10400000000000001" />
+      </ProjectState>
+    </option>
   </component>
 </project>

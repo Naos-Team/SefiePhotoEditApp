@@ -10,19 +10,34 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.DoubleBounce;
+import com.github.ybq.android.spinkit.style.FadingCircle;
+import com.github.ybq.android.spinkit.style.ThreeBounce;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.sweet.selfiecameraphotoeditor.Ad_class;
 import com.sweet.selfiecameraphotoeditor.R;
 import com.sweet.selfiecameraphotoeditor.common.CustomTextView;
+import com.sweet.selfiecameraphotoeditor.model.Image;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SplashScreenActivity extends AppCompatActivity {
+
+    ImageView iv_icon;
+    TextView textView;
+    ProgressBar progressBar;
 
 
     @Override
@@ -32,8 +47,16 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         Ad_class.loadAd(SplashScreenActivity.this);
 
+        iv_icon = findViewById(R.id.ic_app);
+        textView = findViewById(R.id.tv_title);
+        progressBar = findViewById(R.id.progress_circular);
+
+        progressBar.setIndeterminateDrawable(new DoubleBounce());
+
         getWindow().setFlags(1024, 1024);
         StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().build());
+
+
 
     }
 
@@ -81,15 +104,19 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+
         if (ContextCompat.checkSelfPermission(getApplicationContext(), "android.permission.READ_EXTERNAL_STORAGE") == 0 && ContextCompat.checkSelfPermission(getApplicationContext(), "android.permission.WRITE_EXTERNAL_STORAGE") == 0 && ContextCompat.checkSelfPermission(getApplicationContext(), "android.permission.CAMERA") == 0) {
+
             new Handler().postDelayed(new Runnable() {
                 public void run() {
+
                     if (!SplashScreenActivity.this.needPermissionCheck()) {
+
                         SplashScreenActivity splashScreenActivity = SplashScreenActivity.this;
                         splashScreenActivity.startActivity(new Intent(splashScreenActivity.getApplicationContext(), MainActivity.class));
                     }
                 }
-            }, 3000);
+            }, 3500);
         } else {
             PermissionDialog();
         }
