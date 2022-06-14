@@ -400,8 +400,12 @@ public class SweetCameraActivity extends AppCompatActivity {
 
 
                     public void run() {
-
                         Bitmap decodeByteArray = BitmapFactory.decodeByteArray(bArr, 0, bArr.length);
+                        Matrix matrix = new Matrix();
+                        matrix.setScale(-1, 1);
+                        matrix.postTranslate( decodeByteArray.getWidth(),0);
+                        decodeByteArray = Bitmap.createBitmap( decodeByteArray, 0, 0,
+                                decodeByteArray.getWidth(), decodeByteArray.getHeight(), matrix, true);
                         Bitmap screenShot = SweetCameraActivity.this.getScreenShot();
                         SweetCameraActivity.this.saveBitmapImage(SweetCameraActivity.this.mirrirImage(decodeByteArray));
                         SweetCameraActivity.this.saveBitmapImage1(screenShot);
