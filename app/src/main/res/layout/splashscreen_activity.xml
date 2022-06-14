@@ -67,13 +67,13 @@
         android:layout_height="0dp"
         android:src="@mipmap/splash5"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="3:2"
+        app:layout_constraintDimensionRatio="5:4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.72"
-        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintVertical_bias="0.75"
+        app:layout_constraintWidth_percent="0.45"
         app:riv_corner_radius="10dp" />
 
     <TextView

@@ -49,10 +49,10 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     protected static final int SELECT_FILE = 222;
-    LinearLayout btnCamera;
-    LinearLayout btnCollage;
-    LinearLayout btnEditor;
-    LinearLayout btnMycreation;
+    ImageView btnCamera;
+    ImageView btnCollage;
+    ImageView btnEditor;
+    ImageView btnMycreation;
     File f81f;
     ImageView imgRateus;
     ImageView imgPrivacy;
@@ -71,13 +71,13 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 23 && !(ContextCompat.checkSelfPermission(this, "android.permission.READ_EXTERNAL_STORAGE") == 0 && ContextCompat.checkSelfPermission(this, "android.permission.WRITE_EXTERNAL_STORAGE") == 0 && ContextCompat.checkSelfPermission(this, "android.permission.CAMERA") == 0)) {
             getPermission();
         }
-        this.btnCamera = (LinearLayout) findViewById(R.id.btn_camera);
-        this.btnEditor = (LinearLayout) findViewById(R.id.btn_editor);
-        this.btnCollage = (LinearLayout) findViewById(R.id.btn_collage);
-        this.btnMycreation = (LinearLayout) findViewById(R.id.btn_mycreation);
-        this.imgShareapp = (ImageView) findViewById(R.id.img_shareapp);
-        this.imgRateus = (ImageView) findViewById(R.id.img_rateus);
-        this.imgPrivacy = (ImageView) findViewById(R.id.img_privacy);
+        this.btnCamera = (ImageView) findViewById(R.id.img_bg1);
+        this.btnEditor = (ImageView) findViewById(R.id.img_bg2);
+        this.btnCollage = (ImageView) findViewById(R.id.img_bg3);
+        this.btnMycreation = (ImageView) findViewById(R.id.img_bg4);
+//        this.imgShareapp = (ImageView) findViewById(R.id.img_shareapp);
+//        this.imgRateus = (ImageView) findViewById(R.id.img_rateus);
+//        this.imgPrivacy = (ImageView) findViewById(R.id.img_privacy);
         this.btnCamera.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Ad_class.showInterstitial(MainActivity.this, new Ad_class.onLisoner() {
