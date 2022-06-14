@@ -69,5 +69,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-ml-vision-face-model:20.0.2'
 //    implementation 'com.google.android.gms:play-services:12.0.1'
 
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
+
 
 }

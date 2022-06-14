@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.bumptech.glide.Glide;
 import com.sweet.selfiecameraphotoeditor.R;
 import com.sweet.selfiecameraphotoeditor.activities.CameraCreationFragment;
@@ -31,6 +33,7 @@ public class Camera_Creation_Adapter extends BaseAdapter {
     static class ViewHolder {
         ImageView deleteBtn;
         ImageView gallryImg;
+        ConstraintLayout item_layout;
 
         ViewHolder() {
         }
@@ -59,6 +62,7 @@ public class Camera_Creation_Adapter extends BaseAdapter {
             viewHolder = new ViewHolder();
             viewHolder.gallryImg = (ImageView) view.findViewById(R.id.img_gallary);
             viewHolder.deleteBtn = (ImageView) view.findViewById(R.id.img_del);
+            viewHolder.item_layout = (ConstraintLayout) view.findViewById(R.id.item_my_creation);
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
@@ -89,6 +93,10 @@ public class Camera_Creation_Adapter extends BaseAdapter {
                 dialog.show();
             }
         });
+        int height = activity.getResources().getDisplayMetrics().heightPixels;
+        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int)Math.round(height*0.2));
+        layoutParams.setMargins(5,5,5,5);
+        viewHolder.item_layout.setLayoutParams(layoutParams);
         return view;
     }
 }
