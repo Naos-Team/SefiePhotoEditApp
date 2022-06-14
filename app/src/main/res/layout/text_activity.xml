@@ -340,7 +340,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/img_subaddtext" />
+                android:src="@drawable/add_text" />
 
             <com.sweet.selfiecameraphotoeditor.common.CustomTextView
                 android:layout_width="match_parent"
@@ -371,7 +371,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/img_subtextstyle" />
+                android:src="@drawable/textfont" />
 
             <com.sweet.selfiecameraphotoeditor.common.CustomTextView
                 android:layout_width="match_parent"
@@ -402,7 +402,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/img_subtextcolor" />
+                android:src="@drawable/textcolor_white" />
 
             <com.sweet.selfiecameraphotoeditor.common.CustomTextView
                 android:layout_width="match_parent"
@@ -433,7 +433,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/img_subtextshadow" />
+                android:src="@drawable/textshadow" />
 
             <com.sweet.selfiecameraphotoeditor.common.CustomTextView
                 android:layout_width="match_parent"
