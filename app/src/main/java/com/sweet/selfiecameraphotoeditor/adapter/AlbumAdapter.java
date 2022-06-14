@@ -10,6 +10,8 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.sweet.selfiecameraphotoeditor.R;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
@@ -29,10 +31,10 @@ public class AlbumAdapter extends ArrayAdapter<ImageModel> {
     int pWHIconNext = 0;
 
     static class RecordHolder {
-        ImageView iconNext;
+        //ImageView iconNext;
         ImageView imageItem;
-        RelativeLayout layoutRoot;
-        CheckBox select;
+        ConstraintLayout layoutRoot;
+        //CheckBox select;
         CustomTextView txtPath;
         CustomTextView txtTitle;
 
@@ -45,8 +47,8 @@ public class AlbumAdapter extends ArrayAdapter<ImageModel> {
         this.layoutResourceId = i;
         this.context = context2;
         this.data = arrayList;
-        this.pHeightItem = getDisplayInfo((Activity) context2).widthPixels / 6;
-        this.pWHIconNext = this.pHeightItem / 4;
+//        this.pHeightItem = getDisplayInfo((Activity) context2).widthPixels / 6;
+//        this.pWHIconNext = this.pHeightItem / 4;
     }
 
     @Override
@@ -58,21 +60,21 @@ public class AlbumAdapter extends ArrayAdapter<ImageModel> {
             recordHolder.txtTitle = (CustomTextView) view.findViewById(R.id.name_album);
             recordHolder.txtPath = (CustomTextView) view.findViewById(R.id.path_album);
             recordHolder.imageItem = (ImageView) view.findViewById(R.id.icon_album);
-            recordHolder.iconNext = (ImageView) view.findViewById(R.id.iconNext);
-            recordHolder.layoutRoot = (RelativeLayout) view.findViewById(R.id.layoutRoot);
-            recordHolder.layoutRoot.getLayoutParams().height = this.pHeightItem;
-            recordHolder.imageItem.getLayoutParams().width = this.pHeightItem;
-            recordHolder.imageItem.getLayoutParams().height = this.pHeightItem;
-            recordHolder.iconNext.getLayoutParams().width = this.pWHIconNext;
-            recordHolder.iconNext.getLayoutParams().height = this.pWHIconNext;
-            recordHolder.select = (CheckBox) view.findViewById(R.id.select);
+            recordHolder.layoutRoot = (ConstraintLayout) view.findViewById(R.id.layoutRoot);
+//            recordHolder.iconNext = (ImageView) view.findViewById(R.id.iconNext);
+//            recordHolder.layoutRoot.getLayoutParams().height = this.pHeightItem;
+//            recordHolder.imageItem.getLayoutParams().width = this.pHeightItem;
+//            recordHolder.imageItem.getLayoutParams().height = this.pHeightItem;
+            //recordHolder.iconNext.getLayoutParams().width = this.pWHIconNext;
+            //recordHolder.iconNext.getLayoutParams().height = this.pWHIconNext;
+            //recordHolder.select = (CheckBox) view.findViewById(R.id.select);
             view.setTag(recordHolder);
         } else {
             recordHolder = (RecordHolder) view.getTag();
         }
         ImageModel imageModel = this.data.get(i);
         recordHolder.txtTitle.setText(imageModel.getName());
-        recordHolder.txtPath.setText(imageModel.getPathFolder());
+        recordHolder.txtPath.setText(imageModel.getCountFile());
         ((RequestBuilder) Glide.with(this.context).load(new File(imageModel.getPathFile())).placeholder((int) R.drawable.empty_photo)).into(recordHolder.imageItem);
         view.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -81,25 +83,31 @@ public class AlbumAdapter extends ArrayAdapter<ImageModel> {
                 }
             }
         });
-        if (this.data.get(i).isSelected()) {
-            recordHolder.select.setChecked(true);
-        } else {
-            recordHolder.select.setChecked(false);
-        }
-        recordHolder.select.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                if (AlbumAdapter.this.data.get(i).isSelected()) {
-                    AlbumAdapter.this.data.get(i).setSelected(false);
-                    recordHolder.select.setChecked(false);
-                    AlbumAdapter.this.onItem.onlongalbumclicklist(i, false);
-                } else {
-                    AlbumAdapter.this.data.get(i).setSelected(true);
-                    recordHolder.select.setChecked(true);
-                    AlbumAdapter.this.onItem.onlongalbumclicklist(i, true);
-                }
-                AlbumAdapter.this.notifyDataSetChanged();
-            }
-        });
+
+        int height = getContext().getResources().getDisplayMetrics().heightPixels;
+        int width = getContext().getResources().getDisplayMetrics().widthPixels;
+        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams((int)Math.round(width*0.27), (int)Math.round(height*0.2));
+        layoutParams.setMargins(5,10,5,10);
+        recordHolder.layoutRoot.setLayoutParams(layoutParams);
+//        if (this.data.get(i).isSelected()) {
+//            recordHolder.select.setChecked(true);
+//        } else {
+//            recordHolder.select.setChecked(false);
+//        }
+//        recordHolder.select.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View view) {
+//                if (AlbumAdapter.this.data.get(i).isSelected()) {
+//                    AlbumAdapter.this.data.get(i).setSelected(false);
+//                    recordHolder.select.setChecked(false);
+//                    AlbumAdapter.this.onItem.onlongalbumclicklist(i, false);
+//                } else {
+//                    AlbumAdapter.this.data.get(i).setSelected(true);
+//                    recordHolder.select.setChecked(true);
+//                    AlbumAdapter.this.onItem.onlongalbumclicklist(i, true);
+//                }
+//                AlbumAdapter.this.notifyDataSetChanged();
+//            }
+//        });
         return view;
     }
 

@@ -37,12 +37,21 @@
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/color_adapter.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/color_item.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/content_splash.xml" value="0.176" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/custom_toast.xml" value="0.23229166666666667" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/dialog_back.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/dialog_delete.xml" value="0.264" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/dialog_exit.xml" value="0.19010416666666666" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/photocreation_adapter.xml" value="0.176" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/photoselect_activity.xml" value="0.23229166666666667" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/photoshare_activity.xml" value="0.23229166666666667" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/piclist_item_selected.xml" value="0.23229166666666667" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/piclist_row_album.xml" value="0.2" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/piclist_row_list_album.xml" value="0.23229166666666667" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/popup_horizontal.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/popup_vertical.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/progressdialog.xml" value="0.1" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/splashscreen_activity.xml" value="0.136" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/stickerlist_adapter.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/sweetcamera_activity.xml" value="0.21822916666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/text_activity.xml" value="0.23229166666666667" />
       </map>

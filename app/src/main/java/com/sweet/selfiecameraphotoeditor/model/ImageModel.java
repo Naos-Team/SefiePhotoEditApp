@@ -4,6 +4,7 @@ public class ImageModel {
     int id;
     String name;
     String pathFile;
+    String countFile;
     String pathFolder;
     boolean selected = false;
 
@@ -15,11 +16,20 @@ public class ImageModel {
         this.selected = z;
     }
 
-    public ImageModel(String str, String str2, String str3, Boolean bool) {
+    public ImageModel(String str, String str2, String str3, Boolean bool, String countFile) {
         this.name = str;
         this.pathFile = str2;
         this.pathFolder = str3;
         this.selected = bool.booleanValue();
+        this.countFile = countFile;
+    }
+
+    public String getCountFile() {
+        return countFile;
+    }
+
+    public void setCountFile(String countFile) {
+        this.countFile = countFile;
     }
 
     public String getPathFile() {

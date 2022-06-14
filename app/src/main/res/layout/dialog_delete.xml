@@ -22,20 +22,19 @@
         <com.sweet.selfiecameraphotoeditor.common.CustomTextView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:autoSizeMaxTextSize="25sp"
+            android:autoSizeMaxTextSize="30sp"
             android:autoSizeMinTextSize="10sp"
             android:autoSizeStepGranularity="2sp"
             android:autoSizeTextType="uniform"
             android:gravity="center"
-
             android:textStyle="bold"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:text="Do You Want To Delete This File ?"
-            android:textColor="#3e8edd"
+            android:textColor="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.15"
+            app:layout_constraintHeight_percent="0.16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.3" />
