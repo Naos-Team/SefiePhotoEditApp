@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_44sdp"
+        android:layout_height="50dp"
         android:background="@color/colorHeader">
 
         <ImageView
@@ -141,7 +141,7 @@
     <RelativeLayout
         android:id="@+id/lay_below"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="215dp"
         android:layout_above="@+id/bottom_layout">
 
         <RelativeLayout
@@ -169,7 +169,7 @@
         <RelativeLayout
             android:id="@+id/color_rel"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="207dp"
             android:background="@color/semi_black"
             android:gravity="center"
             android:visibility="invisible">
