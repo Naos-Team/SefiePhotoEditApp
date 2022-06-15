@@ -79,13 +79,15 @@ public class Ad_class {
     public static void showInterstitial(Activity activity, onLisoner onLisoner) {
 
         onClickListener = onLisoner;
-        if (interstitialAd != null) {
-            interstitialAd.show(activity);
-            return;
-        } else {
-            onLisoner.click();
+//        if (interstitialAd != null) {
+//            interstitialAd.show(activity);
+//            return;
+//        } else {
+//            onLisoner.click();
+//
+//        }
 
-        }
+        onLisoner.click();
 
 
     }

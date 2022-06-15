@@ -93,9 +93,12 @@ public class MainActivity extends AppCompatActivity {
                 Ad_class.showInterstitial(MainActivity.this, new Ad_class.onLisoner() {
                     @Override
                     public void click() {
-                        Intent intent = new Intent("android.intent.action.PICK", MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        intent.setType(Utils.MIME_TYPE_IMAGE);
-                        MainActivity.this.startActivityForResult(Intent.createChooser(intent, "Select File"), MainActivity.SELECT_FILE);
+//                        Intent intent = new Intent("android.intent.action.PICK", MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                        intent.setType(Utils.MIME_TYPE_IMAGE);
+//                        MainActivity.this.startActivityForResult(Intent.createChooser(intent, "Select File"), MainActivity.SELECT_FILE);
+
+                        Intent intent = new Intent(MainActivity.this, PhotoEditorActivity.class);
+                        startActivity(intent);
                     }
                 });
             }

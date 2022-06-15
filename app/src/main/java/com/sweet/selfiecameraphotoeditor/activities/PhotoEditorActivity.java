@@ -12,6 +12,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -112,6 +113,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
     LinearLayout btnSituration;
     LinearLayout btnSticker;
     LinearLayout btnText;
+    LinearLayout ll_empty_photo, ll_load_photo;
+    ImageView btnAddPhoto;
     ImageView cameraSelect;
     ProgressDialog dialog;
     private boolean editMode = false;
@@ -164,6 +167,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
     File tempfilepath;
     ImageView textSelect;
     boolean touchChange = false;
+    boolean is_photo = false;
     private CustomTextView txtremoveoverlay;
     int width;
 
@@ -225,9 +229,23 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
         AdView mAdView = findViewById(R.id.adView);
         Ad_class.Show_banner(mAdView);
 
+        ll_empty_photo = findViewById(R.id.ll_empty_photo);
+        ll_load_photo = findViewById(R.id.ll_load_photo);
+
         this.mImagename = getIntent().getStringExtra("img");
         RequestBuilder<Bitmap> asBitmap = Glide.with((FragmentActivity) this).asBitmap();
         ((RequestBuilder) ((RequestBuilder) asBitmap.load(Utils.SAVED_IMG_PATH + "" + this.mImagename).diskCacheStrategy(DiskCacheStrategy.NONE)).skipMemoryCache(true)).into(new C13331());
+
+        btnAddPhoto = findViewById(R.id.btn_add_image);
+        btnAddPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent("android.intent.action.PICK", MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                intent.setType(Utils.MIME_TYPE_IMAGE);
+                PhotoEditorActivity.this.startActivityForResult(Intent.createChooser(intent, "Select File"), PhotoEditorActivity.SELECT_FILE);
+            }
+        });
+
         this.imgBack = (ImageView) findViewById(R.id.img_back);
         this.imgBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -256,11 +274,11 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
         this.btnDrawingundo = (LinearLayout) findViewById(R.id.btn_drawingundo);
         this.btnDrawingredo = (LinearLayout) findViewById(R.id.btn_drawingredo);
         this.btnDrawingerase = (LinearLayout) findViewById(R.id.btn_drawingerase);
-        this.cameraSelect = (ImageView) findViewById(R.id.camera_select);
-        this.galleryselect = (ImageView) findViewById(R.id.gallery_select);
-        this.filterSelect = (ImageView) findViewById(R.id.filter_select);
-        this.effectSelect = (ImageView) findViewById(R.id.effect_select);
-        this.adjustSelect = (ImageView) findViewById(R.id.adjust_select);
+//        this.cameraSelect = (ImageView) findViewById(R.id.camera_select);
+//        this.galleryselect = (ImageView) findViewById(R.id.gallery_select);
+//        this.filterSelect = (ImageView) findViewById(R.id.filter_select);
+//        this.effectSelect = (ImageView) findViewById(R.id.effect_select);
+//        this.adjustSelect = (ImageView) findViewById(R.id.adjust_select);
         this.stickerSelect = (ImageView) findViewById(R.id.sticker_select);
         this.textSelect = (ImageView) findViewById(R.id.text_select);
         this.paintSelect = (ImageView) findViewById(R.id.paint_select);
@@ -359,14 +377,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
         this.btnCamera.setOnClickListener(new View.OnClickListener() {
             @SuppressLint({"WrongConstant"})
             public void onClick(View view) {
-                PhotoEditorActivity.this.cameraSelect.setVisibility(View.VISIBLE);
-                PhotoEditorActivity.this.galleryselect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.filterSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.effectSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.adjustSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.stickerSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.textSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.paintSelect.setVisibility(View.GONE);
+
                 PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
@@ -403,14 +414,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
         this.btnGallery.setOnClickListener(new View.OnClickListener() {
             @SuppressLint({"WrongConstant"})
             public void onClick(View view) {
-                PhotoEditorActivity.this.cameraSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.galleryselect.setVisibility(View.VISIBLE);
-                PhotoEditorActivity.this.filterSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.effectSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.adjustSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.stickerSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.textSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.paintSelect.setVisibility(View.GONE);
+
                 PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
@@ -438,14 +442,13 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
         this.btnFilter.setOnClickListener(new View.OnClickListener() {
             @SuppressLint({"WrongConstant"})
             public void onClick(View view) {
-                PhotoEditorActivity.this.cameraSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.galleryselect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.filterSelect.setVisibility(View.VISIBLE);
-                PhotoEditorActivity.this.effectSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.adjustSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.stickerSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.textSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.paintSelect.setVisibility(View.GONE);
+                
+                if(!is_photo){
+                    Toast.makeText(PhotoEditorActivity.this, getResources().getString(R.string.require_photo), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                
+
                 PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
@@ -474,17 +477,16 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
         this.btnEffect.setOnClickListener(new View.OnClickListener() {
             @SuppressLint({"WrongConstant"})
             public void onClick(View view) {
+
+                if(!is_photo){
+                    Toast.makeText(PhotoEditorActivity.this, getResources().getString(R.string.require_photo), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if (PhotoEditorActivity.this.effectrecycler.getVisibility() == View.GONE) {
                     PhotoEditorActivity.this.effectrecycler.setVisibility(View.VISIBLE);
                     PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.VISIBLE);
-                    PhotoEditorActivity.this.cameraSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.galleryselect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.filterSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.effectSelect.setVisibility(View.VISIBLE);
-                    PhotoEditorActivity.this.adjustSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.stickerSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.textSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.paintSelect.setVisibility(View.GONE);
+
                     PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
                     PhotoEditorActivity.this.seekbarmainopacitylayout.setVisibility(View.GONE);
                     PhotoEditorActivity.this.seekbarsaturationlayout.setVisibility(View.GONE);
@@ -507,14 +509,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                 }
                 PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
-                PhotoEditorActivity.this.cameraSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.galleryselect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.filterSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.effectSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.adjustSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.stickerSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.textSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.paintSelect.setVisibility(View.GONE);
+
                 PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbarmainopacitylayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbarsaturationlayout.setVisibility(View.GONE);
@@ -538,14 +533,12 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
             @SuppressLint({"WrongConstant"})
             public void onClick(View view) {
                 if (PhotoEditorActivity.this.adjustLayout.getVisibility() == View.GONE) {
-                    PhotoEditorActivity.this.cameraSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.galleryselect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.filterSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.effectSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.adjustSelect.setVisibility(View.VISIBLE);
-                    PhotoEditorActivity.this.stickerSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.textSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.paintSelect.setVisibility(View.GONE);
+
+                    if(!is_photo){
+                        Toast.makeText(PhotoEditorActivity.this, getResources().getString(R.string.require_photo), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     PhotoEditorActivity.this.adjustLayout.setVisibility(View.VISIBLE);
                     PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
                     PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
@@ -568,14 +561,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                     }
                     return;
                 }
-                PhotoEditorActivity.this.cameraSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.galleryselect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.filterSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.effectSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.adjustSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.stickerSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.textSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.paintSelect.setVisibility(View.GONE);
+
                 PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
@@ -601,14 +587,12 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
             @SuppressLint({"WrongConstant"})
             public void onClick(View view) {
                 if (PhotoEditorActivity.this.stickerrecycler.getVisibility() == View.GONE) {
-                    PhotoEditorActivity.this.cameraSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.galleryselect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.filterSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.effectSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.adjustSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.stickerSelect.setVisibility(View.VISIBLE);
-                    PhotoEditorActivity.this.textSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.paintSelect.setVisibility(View.GONE);
+
+                    if(!is_photo){
+                        Toast.makeText(PhotoEditorActivity.this, getResources().getString(R.string.require_photo), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
                     PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
                     PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
@@ -631,14 +615,14 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                     }
                     return;
                 }
-                PhotoEditorActivity.this.cameraSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.galleryselect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.filterSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.effectSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.adjustSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.stickerSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.textSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.paintSelect.setVisibility(View.GONE);
+//                PhotoEditorActivity.this.cameraSelect.setVisibility(View.GONE);
+//                PhotoEditorActivity.this.galleryselect.setVisibility(View.GONE);
+//                PhotoEditorActivity.this.filterSelect.setVisibility(View.GONE);
+//                PhotoEditorActivity.this.effectSelect.setVisibility(View.GONE);
+//                PhotoEditorActivity.this.adjustSelect.setVisibility(View.GONE);
+//                PhotoEditorActivity.this.stickerSelect.setVisibility(View.GONE);
+//                PhotoEditorActivity.this.textSelect.setVisibility(View.GONE);
+//                PhotoEditorActivity.this.paintSelect.setVisibility(View.GONE);
                 PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
@@ -663,14 +647,12 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
         this.btnText.setOnClickListener(new View.OnClickListener() {
             @SuppressLint({"WrongConstant"})
             public void onClick(View view) {
-                PhotoEditorActivity.this.cameraSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.galleryselect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.filterSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.effectSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.adjustSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.stickerSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.textSelect.setVisibility(View.VISIBLE);
-                PhotoEditorActivity.this.paintSelect.setVisibility(View.GONE);
+
+                if(!is_photo){
+                    Toast.makeText(PhotoEditorActivity.this, getResources().getString(R.string.require_photo), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
@@ -698,15 +680,12 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
             @SuppressLint({"WrongConstant"})
             public void onClick(View view) {
                 if (PhotoEditorActivity.this.rlDrawingView.getVisibility() == View.GONE) {
-                    PhotoEditorActivity.this.cameraSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.galleryselect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.filterSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.effectSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.adjustSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.stickerSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.textSelect.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.paintSelect.setVisibility(View.VISIBLE);
-                    PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
+
+                    if(!is_photo){
+                        Toast.makeText(PhotoEditorActivity.this, getResources().getString(R.string.require_photo), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
                     PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
                     PhotoEditorActivity.this.seekbarmainopacitylayout.setVisibility(View.GONE);
@@ -728,14 +707,14 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                     }
                     return;
                 }
-                PhotoEditorActivity.this.cameraSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.galleryselect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.filterSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.effectSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.adjustSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.stickerSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.textSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.paintSelect.setVisibility(View.GONE);
+//                PhotoEditorActivity.this.cameraSelect.setVisibility(View.GONE);
+//                PhotoEditorActivity.this.galleryselect.setVisibility(View.GONE);
+//                PhotoEditorActivity.this.filterSelect.setVisibility(View.GONE);
+//                PhotoEditorActivity.this.effectSelect.setVisibility(View.GONE);
+//                PhotoEditorActivity.this.adjustSelect.setVisibility(View.GONE);
+//                PhotoEditorActivity.this.stickerSelect.setVisibility(View.GONE);
+//                PhotoEditorActivity.this.textSelect.setVisibility(View.GONE);
+//                PhotoEditorActivity.this.paintSelect.setVisibility(View.GONE);
                 PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
@@ -1083,7 +1062,6 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
         if (i2 == -1) {
             if (i == 111) {
 
-
                 Log.e("hello", "kjfddsfjdshfksdhkfj");
 
                 try {
@@ -1294,7 +1272,22 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
         C13331() {
         }
 
+        @Override
+        public void onStart() {
+            ll_load_photo.setVisibility(View.VISIBLE);
+            super.onStart();
+        }
+
+        @Override
+        public void onLoadStarted(@Nullable Drawable placeholder) {
+            ll_load_photo.setVisibility(View.VISIBLE);
+            super.onLoadStarted(placeholder);
+        }
+
         public void onResourceReady(@NonNull Bitmap bitmap, @Nullable Transition<? super Bitmap> transition) {
+            ll_empty_photo.setVisibility(View.GONE);
+            ll_load_photo.setVisibility(View.GONE);
+            is_photo = true;
             PhotoEditorActivity.this.ivimg.setImageBitmap(bitmap);
             PhotoEditorActivity photoEditorActivity = PhotoEditorActivity.this;
             photoEditorActivity.original = bitmap;
@@ -1302,7 +1295,16 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
             PhotoEditorActivity photoEditorActivity2 = PhotoEditorActivity.this;
             photoEditorActivity2.height = photoEditorActivity2.original.getHeight();
         }
+
+        @Override
+        public void onLoadFailed(@Nullable Drawable errorDrawable) {
+            ll_empty_photo.setVisibility(View.VISIBLE);
+            ll_load_photo.setVisibility(View.GONE);
+            is_photo = false;
+            super.onLoadFailed(errorDrawable);
+        }
     }
+
 
     private class SaveImage extends AsyncTask<Object, Integer, String> {
         private SaveImage() {
