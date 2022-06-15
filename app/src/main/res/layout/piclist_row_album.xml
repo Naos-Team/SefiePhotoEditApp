@@ -28,7 +28,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="2dp"
-        android:autoSizeMaxTextSize="20sp"
+        android:autoSizeMaxTextSize="15sp"
         android:autoSizeMinTextSize="10sp"
         android:autoSizeStepGranularity="2sp"
         android:autoSizeTextType="uniform"
@@ -39,9 +39,10 @@
         android:textColor="#272727"
         android:textSize="13dp"
         android:textStyle="bold"
+        app:layout_constraintWidth_percent="0.95"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintHeight_percent="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/icon_album"
         app:layout_constraintVertical_bias="0.0" />
@@ -54,11 +55,11 @@
         android:src="#805E5E5E"
         app:layout_constraintBottom_toBottomOf="@+id/icon_album"
         app:layout_constraintEnd_toEndOf="@+id/icon_album"
-        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintHeight_percent="0.15"
         app:layout_constraintStart_toStartOf="@+id/icon_album"
         app:layout_constraintTop_toTopOf="@+id/icon_album"
         app:layout_constraintVertical_bias="0.95"
-        app:layout_constraintWidth_percent="0.6"
+        app:layout_constraintWidth_percent="0.9"
         app:riv_corner_radius="5dp" />
 
     <com.sweet.selfiecameraphotoeditor.common.CustomTextView
@@ -69,8 +70,8 @@
         android:gravity="center"
         android:text="0 File"
         android:textColor="@color/white"
-        android:autoSizeMaxTextSize="20sp"
-        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMaxTextSize="10sp"
+        android:autoSizeMinTextSize="5sp"
         android:autoSizeStepGranularity="2sp"
         android:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/bg_count"
@@ -111,7 +112,8 @@
 <!--            android:layout_height="wrap_content"-->
 <!--            android:layout_alignParentRight="true"-->
 <!--            android:layout_centerVertical="true" />-->
-<!--        <ImageView android:id="@+id/iconNext" android:visibility="gone" android:layout_width="20dp" android:layout_height="20dp" android:layout_alignParentRight="true" android:layout_centerVertical="true"/>-->
+<!--        <ImageView
+ android:id="@+id/iconNext" android:visibility="gone" android:layout_width="20dp" android:layout_height="20dp" android:layout_alignParentRight="true" android:layout_centerVertical="true"/>-->
 <!--    </RelativeLayout>-->
 
 <!--    <View-->

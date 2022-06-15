@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/a2_grad.xml" value="0.1935" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/bg_camera.xml" value="0.182" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/bg_camera_selfie.xml" value="0.1875" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/bg_dialog_delete.xml" value="0.1595" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/bg_ic.xml" value="0.2" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/bg_main.xml" value="0.182" />
@@ -12,6 +13,7 @@
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/border_camera.xml" value="0.182" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/camera_flash_light_selector.xml" value="0.182" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/camera_flash_time_selector.xml" value="0.182" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/camera_flash_touch_selector.xml" value="0.1875" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/custom_button1.xml" value="0.1595" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/custom_photosavingbg.xml" value="0.182" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/customadbg.xml" value="0.182" />
@@ -31,7 +33,7 @@
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/cameracreation_fragment.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/cameraphotosave_activity.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/cameraphotoshare_activity.xml" value="0.23229166666666667" />
-        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/camerastart_activity.xml" value="0.23229166666666667" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/camerastart_activity.xml" value="0.152" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/camerastickerphotosave_activity.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/collagelayout_adapter.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/color_adapter.xml" value="0.23229166666666667" />
@@ -41,8 +43,16 @@
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/dialog_back.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/dialog_delete.xml" value="0.264" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/dialog_exit.xml" value="0.19010416666666666" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/dialog_permission.xml" value="0.23229166666666667" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/effect_item_layout.xml" value="0.23229166666666667" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/effectlist_adapter.xml" value="0.23229166666666667" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/erase_dialog.xml" value="0.23229166666666667" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/fbnativeviewpager.xml" value="0.23229166666666667" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/filter_division_layout.xml" value="0.23229166666666667" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/image_slider_camera.xml" value="0.215625" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/photocollage_activity.xml" value="0.4" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/photocreation_adapter.xml" value="0.176" />
-        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/photoselect_activity.xml" value="0.23229166666666667" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/photoselect_activity.xml" value="0.2" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/photoshare_activity.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/piclist_item_selected.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/piclist_row_album.xml" value="0.2" />
@@ -52,8 +62,8 @@
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/progressdialog.xml" value="0.1" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/splashscreen_activity.xml" value="0.136" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/stickerlist_adapter.xml" value="0.23229166666666667" />
-        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/sweetcamera_activity.xml" value="0.21822916666666667" />
-        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/text_activity.xml" value="0.23229166666666667" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/sweetcamera_activity.xml" value="0.3029366306027821" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/text_activity.xml" value="0.4" />
       </map>
     </option>
   </component>
@@ -66,7 +76,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.1" />
+        <option name="scale" value="0.152" />
       </ProjectState>
     </option>
   </component>

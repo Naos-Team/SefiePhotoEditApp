@@ -1,103 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F6F5F5">
+    android:background="@color/colorHeader">
 
-    <RelativeLayout
-        android:id="@+id/toprel"
-        android:layout_width="match_parent"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/image_slider"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15"
+        app:layout_constraintWidth_percent="0.9" />
+
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/circle_indicator"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/image_slider"
+        app:layout_constraintEnd_toEndOf="@+id/image_slider"
+        app:layout_constraintHeight_percent="0.03"
+        app:layout_constraintStart_toStartOf="@+id/image_slider"
+        app:layout_constraintTop_toTopOf="@+id/image_slider"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/img_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.02"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorWhite">
-
-        <RelativeLayout
-            android:id="@+id/header_layout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_44sdp"
-            android:background="@color/colorBlack">
-
-            <ImageView
-                android:id="@+id/img_back"
-                android:layout_width="@dimen/_44sdp"
-                android:layout_height="@dimen/_44sdp"
-                android:padding="@dimen/_15sdp"
-                android:src="@drawable/img_back" />
-
-            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:paddingTop="@dimen/_2sdp"
-                android:text="Live Selfie Camera"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_12sdp" />
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="Live Selfie Camera"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.02" />
 
 
-        </RelativeLayout>
 
 
-        <RelativeLayout
-            android:background="@mipmap/btn_filter"
-            android:layout_below="@+id/header_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
-        <FrameLayout
-            android:id="@+id/native_frame"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/header_layout"
-            android:background="@drawable/customadbg" />
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/btn_camerasticker"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/btn_live_sticker"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintWidth_percent="0.41"
+        app:riv_corner_radius="10dp"
+        />
 
-    </RelativeLayout>
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/btn_camerasticker_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_camera_selfie"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintWidth_percent="0.41"
+        app:riv_corner_radius="10dp"
+        />
 
-    <LinearLayout
-        android:layout_below="@+id/toprel"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="LIVE\n STICKER"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_camerasticker"
+        app:layout_constraintEnd_toEndOf="@+id/btn_camerasticker"
+        app:layout_constraintStart_toStartOf="@+id/btn_camerasticker"
+        app:layout_constraintTop_toTopOf="@+id/btn_camerasticker"
+        app:layout_constraintVertical_bias="0.95" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/btn_camerafilter"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/btn_filter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintWidth_percent="0.41"
+        app:riv_corner_radius="10dp"
+        />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/btn_camerafilter_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_camera_selfie"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintWidth_percent="0.41"
+        app:riv_corner_radius="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="FILTER"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_camerafilter"
+        app:layout_constraintEnd_toEndOf="@+id/btn_camerafilter"
+        app:layout_constraintStart_toStartOf="@+id/btn_camerafilter"
+        app:layout_constraintTop_toTopOf="@+id/btn_camerafilter"
+        app:layout_constraintVertical_bias="0.95" />
+
+        <!--        <RelativeLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/header_layout"-->
+        <!--            android:background="@mipmap/btn_filter" />-->
+
+        <!--        <FrameLayout-->
+        <!--            android:id="@+id/native_frame"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/header_layout"-->
+        <!--            android:background="@drawable/customadbg" />-->
+
+        <!--    </RelativeLayout>-->
+
+<!--            <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/toprel"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:weightSum="2">-->
 
 
-        <androidx.cardview.widget.CardView
-            android:layout_weight="1"
-            android:layout_margin="8dp"
-            android:id="@+id/btn_camerasticker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/colorWhite"
-            app:cardCornerRadius="@dimen/_10sdp">
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/btn_camerasticker"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="8dp"-->
+<!--                android:layout_weight="1"-->
+<!--                app:cardBackgroundColor="@color/colorWhite"-->
+<!--                app:cardCornerRadius="@dimen/_10sdp">-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="@mipmap/btn_live_sticker">
-
-
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_weight="1"
-            android:layout_margin="8dp"
-            android:id="@+id/btn_camerafilter"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            app:cardBackgroundColor="@color/colorWhite"
-            app:cardCornerRadius="@dimen/_10sdp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/btn_filter">
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="180dp"-->
+<!--                    android:background="@mipmap/btn_live_sticker">-->
 
 
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+<!--                </RelativeLayout>-->
+<!--            </androidx.cardview.widget.CardView>-->
 
-    </LinearLayout>
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/btn_camerafilter"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="180dp"-->
+<!--                android:layout_margin="8dp"-->
+<!--                android:layout_weight="1"-->
+<!--                app:cardBackgroundColor="@color/colorWhite"-->
+<!--                app:cardCornerRadius="@dimen/_10sdp">-->
+
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@mipmap/btn_filter">-->
 
 
-</RelativeLayout>
+<!--                </RelativeLayout>-->
+<!--            </androidx.cardview.widget.CardView>-->
+
+<!--        </LinearLayout>-->
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

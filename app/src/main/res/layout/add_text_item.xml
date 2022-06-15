@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:id="@+id/relativeLayout" android:layout_width="wrap_content" android:layout_height="wrap_content">
-    <androidx.cardview.widget.CardView android:layout_width="match_parent" android:layout_height="30dp" android:layout_margin="5dp" app:cardBackgroundColor="@color/colorBlack" app:cardCornerRadius="5dp">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        app:cardBackgroundColor="@color/colorBlack"
+        app:cardCornerRadius="5dp">
         <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="centerCrop"/>
-        <FrameLayout android:layout_gravity="center" android:layout_width="match_parent" android:layout_height="match_parent">
-            <com.sweet.selfiecameraphotoeditor.common.CustomTextView android:textSize="14dp" android:textColor="@color/colorWhite" android:gravity="center_horizontal" android:layout_gravity="center" android:id="@+id/grid_text" android:paddingLeft="10dp" android:paddingRight="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Abc"/>
+        <FrameLayout
+            android:layout_gravity="center" android:layout_width="match_parent" android:layout_height="match_parent">
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                android:textSize="20dp"
+                android:textColor="@color/colorWhite" android:gravity="center_horizontal" android:layout_gravity="center" android:id="@+id/grid_text" android:paddingLeft="10dp" android:paddingRight="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Abc"/>
         </FrameLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

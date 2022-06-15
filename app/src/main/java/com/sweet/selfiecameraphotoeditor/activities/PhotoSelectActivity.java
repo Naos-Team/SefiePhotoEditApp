@@ -18,12 +18,14 @@ import android.widget.GridView;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -53,7 +55,7 @@ public class PhotoSelectActivity extends AppCompatActivity implements View.OnCli
     AlbumAdapter albumAdapter;
     ArrayList<ImageModel> dataAlbum = new ArrayList<>();
     ArrayList<ImageModel> dataListPhoto = new ArrayList<>();
-    GridView gridViewAlbum;
+    RecyclerView gridViewAlbum;
     GridView gridViewListAlbum;
     HorizontalScrollView horizontalScrollView;
     ImageView imgBack;
@@ -68,11 +70,14 @@ public class PhotoSelectActivity extends AppCompatActivity implements View.OnCli
     RecyclerView recycler;
     CustomTextView txtTotalImage;
     CustomTextView txtTitle;
+    GridLayoutManager layoutManager;
+    ProgressBar progressBar;
 
     private class GetItemAlbum extends AsyncTask<Void, Void, String> {
 
         @Override
         public void onPreExecute() {
+            progressBar.setVisibility(View.VISIBLE);
             Log.d("", "");
         }
 
@@ -98,20 +103,12 @@ public class PhotoSelectActivity extends AppCompatActivity implements View.OnCli
                 while (query.moveToNext()) {
                     String string = query.getString(columnIndexOrThrow);
                     File file = new File(string);
-                    long count=0;
                     if (file.exists()) {
-//                        File[] file_ = file.listFiles();
-//                        for (File f : file_){
-//                            if (f.getName().endsWith(".jpg")||f.getName().endsWith(".png")){
-//                                count=count+1;
-//                            }
-//                        }
-
                         boolean checkFile = PhotoSelectActivity.this.checkFile(file);
                         if (!PhotoSelectActivity.this.check(file.getParent(), PhotoSelectActivity.this.pathList) && checkFile) {
                             PhotoSelectActivity.this.pathList.add(file.getParent());
                             if (!file.getParentFile().getName().equalsIgnoreCase("Video") && !file.getParentFile().getName().equalsIgnoreCase("Image")) {
-                                PhotoSelectActivity.this.dataAlbum.add(new ImageModel(file.getParentFile().getName(), string, file.getParent(), false, ""+file.getParentFile().listFiles().length));
+                                PhotoSelectActivity.this.dataAlbum.add(new ImageModel(file.getParentFile().getName(), string, file.getParent(), false, file.getParentFile().listFiles().length+""));
                             }
                         }
                     }
@@ -121,7 +118,7 @@ public class PhotoSelectActivity extends AppCompatActivity implements View.OnCli
             }
             catch (Exception e){
                 e.printStackTrace();
-                Log.e("TTT", "doInBackground: " + e);
+                //Log.e("TTT", "doInBackground: " + e);
             }
             return "";
         }
@@ -129,8 +126,10 @@ public class PhotoSelectActivity extends AppCompatActivity implements View.OnCli
 
         @Override
         public void onPostExecute(String str) {
+            progressBar.setVisibility(View.GONE);
+            PhotoSelectActivity.this.gridViewAlbum.setLayoutManager(layoutManager);
             PhotoSelectActivity.this.gridViewAlbum.setAdapter(PhotoSelectActivity.this.albumAdapter);
-//            PhotoSelectActivity.this.albumAdapter.notifyDataSetChanged();
+            //PhotoSelectActivity.this.albumAdapter.notifyDataSetChanged();
         }
     }
 
@@ -140,6 +139,7 @@ public class PhotoSelectActivity extends AppCompatActivity implements View.OnCli
 
         @Override
         public void onPreExecute() {
+            progressBar.setVisibility(View.VISIBLE);
             Log.d("", "");
         }
 
@@ -164,7 +164,7 @@ public class PhotoSelectActivity extends AppCompatActivity implements View.OnCli
                 if (file2.exists()) {
                     boolean checkFile = PhotoSelectActivity.this.checkFile(file2);
                     if (!file2.isDirectory() && checkFile) {
-                        PhotoSelectActivity.this.dataListPhoto.add(new ImageModel(file2.getName(), file2.getAbsolutePath(), file2.getAbsolutePath(), false, String.valueOf(file.listFiles().length)));
+                        PhotoSelectActivity.this.dataListPhoto.add(new ImageModel(file2.getName(), file2.getAbsolutePath(), file2.getAbsolutePath(), false, ""));
                         publishProgress(new Void[0]);
                     }
                 }
@@ -188,6 +188,7 @@ public class PhotoSelectActivity extends AppCompatActivity implements View.OnCli
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            progressBar.setVisibility(View.GONE);
             PhotoSelectActivity.this.listAlbumAdapter.notifyDataSetChanged();
         }
     }
@@ -213,13 +214,14 @@ public class PhotoSelectActivity extends AppCompatActivity implements View.OnCli
         this.pWHBtnDelete = (this.pWHItemSelected / 100) * 25;
         this.txtTitle = (CustomTextView) findViewById(R.id.txt_title);
         this.txtTitle.setText("Album");
+        this.progressBar = findViewById(R.id.progress_wait);
         this.gridViewListAlbum = (GridView) findViewById(R.id.gridViewListAlbum);
         this.txtTotalImage = (CustomTextView) findViewById(R.id.txtTotalImage);
         ((ImageView) findViewById(R.id.img_done)).setOnClickListener(this);
         this.layoutListItemSelect = (LinearLayout) findViewById(R.id.layoutListItemSelect);
         this.horizontalScrollView = (HorizontalScrollView) findViewById(R.id.horizontalScrollView);
         this.horizontalScrollView.getLayoutParams().height = this.pWHItemSelected;
-        this.gridViewAlbum = (GridView) findViewById(R.id.gridViewAlbum);
+        this.gridViewAlbum = (RecyclerView) findViewById(R.id.gridViewAlbum);
         this.recycler = (RecyclerView) findViewById(R.id.recycler);
         try {
             Collections.sort(this.dataAlbum, new Comparator<ImageModel>() {
@@ -230,7 +232,7 @@ public class PhotoSelectActivity extends AppCompatActivity implements View.OnCli
         } catch (Exception e) {
             e.printStackTrace();
         }
-        this.albumAdapter = new AlbumAdapter(this, R.layout.piclist_row_album, this.dataAlbum);
+        this.albumAdapter = new AlbumAdapter(PhotoSelectActivity.this,dataAlbum);
         this.albumAdapter.setOnItem(this);
         if (isPermissionGranted("android.permission.READ_EXTERNAL_STORAGE")) {
             new GetItemAlbum().execute(new Void[0]);
@@ -244,6 +246,8 @@ public class PhotoSelectActivity extends AppCompatActivity implements View.OnCli
                 PhotoSelectActivity.this.onBackPressed();
             }
         });
+        this.layoutManager = new GridLayoutManager(this, 3);
+
     }
 
     private boolean isPermissionGranted(String str) {
@@ -293,7 +297,7 @@ public class PhotoSelectActivity extends AppCompatActivity implements View.OnCli
         this.txtTitle.setText(new File(str).getName());
         this.listAlbumAdapter = new ListAlbumAdapter(this, R.layout.piclist_row_list_album, this.dataListPhoto);
         this.listAlbumAdapter.setOnListAlbum(this);
-        this.gridViewListAlbum.setAdapter(this.listAlbumAdapter);
+         this.gridViewListAlbum.setAdapter(this.listAlbumAdapter);
         this.gridViewListAlbum.setVisibility(View.VISIBLE);
         new GetItemListAlbum(str).execute(new Void[0]);
     }

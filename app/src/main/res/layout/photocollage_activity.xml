@@ -5,13 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D9000000">
+    android:background="@color/semi_black">
 
     <RelativeLayout
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_44sdp"
-        android:background="@color/colorBlack">
+        android:background="@color/colorHeader">
 
         <ImageView
             android:id="@+id/img_back"
@@ -27,7 +27,7 @@
             android:paddingTop="@dimen/_2sdp"
             android:text="Photo Collage"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_12sdp" />
+            android:textSize="@dimen/_17sdp" />
 
         <ImageView
             android:id="@+id/img_save"
@@ -60,8 +60,8 @@
 
     <RelativeLayout
         android:id="@+id/rlMainScreen"
-        android:layout_width="@dimen/_285sdp"
-        android:layout_height="@dimen/_285sdp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:layout_below="@+id/admobBanner"
         android:layout_centerInParent="true"
         android:layout_marginTop="70dp"
@@ -69,8 +69,8 @@
 
         <RelativeLayout
             android:id="@+id/mContainerLayout"
-            android:layout_width="@dimen/_285sdp"
-            android:layout_height="@dimen/_285sdp"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
             android:background="@color/colorBlack" />
 
         <com.sweet.selfiecameraphotoeditor.common.DrawingView
@@ -98,7 +98,7 @@
     <LinearLayout
         android:id="@+id/seekbarcontrollayout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_above="@+id/bottom_layout"
         android:background="@color/colorBlack"
         android:orientation="vertical"
@@ -116,7 +116,7 @@
                 android:layout_marginLeft="8dp"
                 android:text="Corner"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_9sdp" />
+                android:textSize="@dimen/_11sdp" />
 
             <SeekBar
                 android:id="@+id/cornerseekbar"
@@ -142,7 +142,7 @@
                 android:layout_marginLeft="8dp"
                 android:text="Space"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_9sdp" />
+                android:textSize="@dimen/_11sdp" />
 
             <SeekBar
                 android:id="@+id/spaceseekbar"
@@ -502,7 +502,7 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorBlack"
+        android:background="@color/colorHeader"
         android:orientation="horizontal">
 
         <LinearLayout
