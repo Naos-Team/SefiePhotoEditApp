@@ -9,13 +9,13 @@
     <RelativeLayout
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_44sdp"
-        android:background="@color/colorBlack">
+        android:layout_height="50dp"
+        android:background="@color/colorHeader">
 
         <ImageView
             android:id="@+id/img_camerasub"
-            android:layout_width="@dimen/_44sdp"
-            android:layout_height="@dimen/_44sdp"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
             android:padding="@dimen/_13sdp"
             android:src="@drawable/img_camerasub" />
 
@@ -26,16 +26,16 @@
             android:paddingTop="@dimen/_2sdp"
             android:text="Photo Sharing"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_12sdp" />
+            android:textSize="@dimen/_16sdp" />
 
         <ImageView
             android:id="@+id/img_creation"
-            android:layout_width="@dimen/_44sdp"
-            android:layout_height="@dimen/_44sdp"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
             android:layout_alignParentRight="true"
             android:padding="@dimen/_11sdp"
             android:src="@drawable/img_mycreation"
-            android:tint="@color/colorWhite" />
+            app:tint="@color/colorWhite" />
     </RelativeLayout>
 
     <FrameLayout
@@ -61,9 +61,9 @@
     <LinearLayout
         android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_44sdp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorBlack"
+        android:background="@color/colorHeader"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -75,8 +75,8 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="@dimen/_18sdp"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:src="@drawable/img_fbshare" />
 
@@ -86,7 +86,7 @@
                 android:layout_marginTop="@dimen/_3sdp"
                 android:text="Facebook"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_9sdp" />
+                android:textSize="@dimen/_12sdp" />
         </LinearLayout>
 
         <LinearLayout
@@ -98,8 +98,8 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="@dimen/_18sdp"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:src="@drawable/img_whatshare" />
 
@@ -109,7 +109,7 @@
                 android:layout_marginTop="@dimen/_3sdp"
                 android:text="Whatsapp"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_9sdp" />
+                android:textSize="@dimen/_12sdp" />
         </LinearLayout>
 
         <LinearLayout
@@ -121,8 +121,8 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="@dimen/_18sdp"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:src="@drawable/img_instashare" />
 
@@ -132,7 +132,7 @@
                 android:layout_marginTop="@dimen/_3sdp"
                 android:text="Instagram"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_9sdp" />
+                android:textSize="@dimen/_12sdp" />
         </LinearLayout>
 
         <LinearLayout
@@ -144,8 +144,8 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="@dimen/_18sdp"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:src="@drawable/img_moreshare" />
 
@@ -155,7 +155,7 @@
                 android:layout_marginTop="@dimen/_3sdp"
                 android:text="More"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_9sdp" />
+                android:textSize="@dimen/_12sdp" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

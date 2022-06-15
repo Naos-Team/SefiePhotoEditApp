@@ -1,10 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:background="@drawable/customshape" android:layout_width="match_parent" android:layout_height="wrap_content" android:keepScreenOn="true">
-    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp">
-        <com.sweet.selfiecameraphotoeditor.common.CustomTextView android:textSize="14dp" android:textColor="#000" android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Do You Want Discard Changes ?"/>
-        <LinearLayout android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_marginBottom="15dp" android:layout_centerInParent="true">
-            <com.sweet.selfiecameraphotoeditor.common.CustomTextView android:textSize="13dp" android:textStyle="bold" android:textColor="#fff" android:gravity="center" android:id="@+id/txt_no" android:background="@drawable/custombutton" android:layout_width="90dp" android:layout_height="34dp" android:layout_marginRight="12dp" android:text="No"/>
-            <com.sweet.selfiecameraphotoeditor.common.CustomTextView android:textSize="13dp" android:textStyle="bold" android:textColor="#fff" android:gravity="center" android:id="@+id/txt_yes" android:background="@drawable/custombutton" android:layout_width="90dp" android:layout_height="34dp" android:layout_marginLeft="12dp" android:text="Yes"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Do You Want Discard Changes ?"
+            android:textColor="#000"
+            android:textSize="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="center">
+
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                android:id="@+id/txt_no"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/custombutton"
+                android:gravity="center"
+                android:text="No"
+                android:textColor="#fff"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                android:id="@+id/txt_yes"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="12dp"
+                android:background="@drawable/custombutton"
+                android:gravity="center"
+                android:text="Yes"
+                android:textColor="#fff"
+                android:textSize="18dp"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

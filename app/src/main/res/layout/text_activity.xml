@@ -76,7 +76,7 @@
             android:layout_toLeftOf="@+id/imgtemp"
             android:text="Keyboard Close"
             android:textColor="@color/colorHeader"
-            android:textSize="14dp" />
+            android:textSize="15dp" />
 
         <ImageView
             android:id="@+id/imgtemp"
@@ -123,7 +123,7 @@
             android:maxLength="100"
             android:textColor="@color/colorHeader"
             android:textColorHint="@color/colorHeader"
-            android:textSize="20dp" />
+            android:textSize="27dp" />
 
         <com.sweet.selfiecameraphotoeditor.common.CustomTextView
             android:id="@+id/hint_txt"
@@ -327,7 +327,7 @@
     <LinearLayout
         android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="65dp"
         android:layout_alignParentBottom="true"
         android:background="@color/colorHeader"
         android:gravity="center"
@@ -337,6 +337,7 @@
             android:id="@+id/laykeyboard"
             android:layout_width="@dimen/_55sdp"
             android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -351,7 +352,7 @@
                 android:gravity="center"
                 android:text="Add Text"
                 android:textColor="@color/colorWhite"
-                android:textSize="11dp" />
+                android:textSize="12dp" />
 
             <ImageView
                 android:id="@+id/img_textadd"
@@ -369,6 +370,8 @@
             android:layout_width="@dimen/_55sdp"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="vertical">
 
             <ImageView
@@ -382,7 +385,7 @@
                 android:gravity="center"
                 android:text="Style"
                 android:textColor="@color/colorWhite"
-                android:textSize="11dp" />
+                android:textSize="12dp" />
 
             <ImageView
                 android:id="@+id/img_textstyle"
@@ -399,6 +402,8 @@
             android:id="@+id/lay_txtcolor"
             android:layout_width="@dimen/_55sdp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -413,7 +418,7 @@
                 android:gravity="center"
                 android:text="Color"
                 android:textColor="@color/colorWhite"
-                android:textSize="11dp" />
+                android:textSize="12dp" />
 
             <ImageView
                 android:id="@+id/img_textcolor"
@@ -431,6 +436,7 @@
             android:layout_width="@dimen/_55sdp"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:layout_marginLeft="10dp"
             android:orientation="vertical">
 
             <ImageView
@@ -444,7 +450,7 @@
                 android:gravity="center"
                 android:text="Shadow"
                 android:textColor="@color/colorWhite"
-                android:textSize="11dp" />
+                android:textSize="12dp" />
 
             <ImageView
                 android:id="@+id/img_textshadow"

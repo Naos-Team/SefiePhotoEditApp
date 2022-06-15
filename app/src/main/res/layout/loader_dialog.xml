@@ -21,7 +21,7 @@
         <com.tuyenmonkey.mkloader.MKLoader
             android:layout_width="@dimen/_22sdp"
             android:layout_height="@dimen/_22sdp"
-            app:mk_color="@color/colorBlack"
+            app:mk_color="@color/colorHeader"
             app:mk_type="ClassicSpinner" />
 
         <com.sweet.selfiecameraphotoeditor.common.CustomTextView
@@ -29,6 +29,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
             android:text="Ad Loading"
-            android:textColor="#313131" />
+            android:textColor="@color/colorHeader" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

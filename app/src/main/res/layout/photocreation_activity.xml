@@ -10,7 +10,7 @@
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_44sdp"
-        android:background="@color/colorBlack">
+        android:background="@color/colorHeader">
 
         <ImageView
             android:id="@+id/img_back"
@@ -26,15 +26,15 @@
             android:paddingTop="@dimen/_2sdp"
             android:text="MY Creation"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_12sdp" />
+            android:textSize="@dimen/_15sdp" />
     </RelativeLayout>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabHost"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_42sdp"
+        android:layout_height="50dp"
         android:layout_below="@+id/header_layout"
-        android:background="@color/colorBlack"
+        android:background="@color/colorHeader"
         android:paddingBottom="@dimen/_3sdp"
         app:tabIndicatorColor="#fff"
         app:tabMode="fixed"

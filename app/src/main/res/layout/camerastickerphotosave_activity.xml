@@ -9,8 +9,8 @@
     <RelativeLayout
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_44sdp"
-        android:background="@color/colorBlack">
+        android:layout_height="50dp"
+        android:background="@color/colorHeader">
 
         <ImageView
             android:id="@+id/img_back"
@@ -26,7 +26,7 @@
             android:paddingTop="@dimen/_2sdp"
             android:text="Photo Saving"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_12sdp" />
+            android:textSize="@dimen/_16sdp" />
 
         <ImageView
             android:id="@+id/img_save"
