@@ -141,9 +141,8 @@
     <RelativeLayout
         android:id="@+id/lay_below"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_above="@+id/bottom_layout"
-        android:layout_marginBottom="@dimen/_1sdp">
+        android:layout_height="210dp"
+        android:layout_above="@+id/bottom_layout">
 
         <RelativeLayout
             android:id="@+id/font_grid_rel"
@@ -369,9 +368,9 @@
             android:id="@+id/lay_txtfont"
             android:layout_width="@dimen/_55sdp"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
@@ -435,8 +434,8 @@
             android:id="@+id/lay_txtshadow"
             android:layout_width="@dimen/_55sdp"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_marginLeft="10dp"
+            android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
