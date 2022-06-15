@@ -63,11 +63,14 @@ dependencies {
     implementation 'com.airbnb.android:lottie:3.5.0'
     implementation 'com.sdsmdg.tastytoast:tastytoast:0.1.1'
 
-
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     //ads_dependecy
     implementation 'com.google.android.gms:play-services-ads:20.6.0'
     implementation 'com.google.firebase:firebase-ml-vision-face-model:20.0.2'
 //    implementation 'com.google.android.gms:play-services:12.0.1'
+
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
 
 
 }

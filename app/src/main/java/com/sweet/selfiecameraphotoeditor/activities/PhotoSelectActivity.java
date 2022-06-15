@@ -1,5 +1,6 @@
 package com.sweet.selfiecameraphotoeditor.activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -87,26 +88,41 @@ public class PhotoSelectActivity extends AppCompatActivity implements View.OnCli
 
 
         public String doInBackground(Void... voidArr) {
-            Uri contentUri = MediaStore.Files.getContentUri("external");
-            Cursor query = PhotoSelectActivity.this.getContentResolver().query(contentUri, new String[]{"_id", "_data", "date_added", "media_type", "mime_type", "title"}, "media_type=1 OR media_type=3", (String[]) null, (String) null);
-            if (query == null) {
-                return "";
-            }
-            int columnIndexOrThrow = query.getColumnIndexOrThrow("_data");
-            while (query.moveToNext()) {
-                String string = query.getString(columnIndexOrThrow);
-                File file = new File(string);
-                if (file.exists()) {
-                    boolean checkFile = PhotoSelectActivity.this.checkFile(file);
-                    if (!PhotoSelectActivity.this.check(file.getParent(), PhotoSelectActivity.this.pathList) && checkFile) {
-                        PhotoSelectActivity.this.pathList.add(file.getParent());
-                        if (!file.getParentFile().getName().equalsIgnoreCase("Video") && !file.getParentFile().getName().equalsIgnoreCase("Image")) {
-                            PhotoSelectActivity.this.dataAlbum.add(new ImageModel(file.getParentFile().getName(), string, file.getParent(), false));
+            try{
+                Uri contentUri = MediaStore.Files.getContentUri("external");
+                Cursor query = PhotoSelectActivity.this.getContentResolver().query(contentUri, new String[]{"_id", "_data", "date_added", "media_type", "mime_type", "title"}, "media_type=1 OR media_type=3", (String[]) null, (String) null);
+                if (query == null) {
+                    return "";
+                }
+                int columnIndexOrThrow = query.getColumnIndexOrThrow("_data");
+                while (query.moveToNext()) {
+                    String string = query.getString(columnIndexOrThrow);
+                    File file = new File(string);
+                    long count=0;
+                    if (file.exists()) {
+//                        File[] file_ = file.listFiles();
+//                        for (File f : file_){
+//                            if (f.getName().endsWith(".jpg")||f.getName().endsWith(".png")){
+//                                count=count+1;
+//                            }
+//                        }
+
+                        boolean checkFile = PhotoSelectActivity.this.checkFile(file);
+                        if (!PhotoSelectActivity.this.check(file.getParent(), PhotoSelectActivity.this.pathList) && checkFile) {
+                            PhotoSelectActivity.this.pathList.add(file.getParent());
+                            if (!file.getParentFile().getName().equalsIgnoreCase("Video") && !file.getParentFile().getName().equalsIgnoreCase("Image")) {
+                                PhotoSelectActivity.this.dataAlbum.add(new ImageModel(file.getParentFile().getName(), string, file.getParent(), false, ""+file.getParentFile().listFiles().length));
+                            }
                         }
                     }
                 }
+                query.close();
+                return "";
             }
-            query.close();
+            catch (Exception e){
+                e.printStackTrace();
+                Log.e("TTT", "doInBackground: " + e);
+            }
             return "";
         }
 
@@ -114,6 +130,7 @@ public class PhotoSelectActivity extends AppCompatActivity implements View.OnCli
         @Override
         public void onPostExecute(String str) {
             PhotoSelectActivity.this.gridViewAlbum.setAdapter(PhotoSelectActivity.this.albumAdapter);
+//            PhotoSelectActivity.this.albumAdapter.notifyDataSetChanged();
         }
     }
 
@@ -147,7 +164,7 @@ public class PhotoSelectActivity extends AppCompatActivity implements View.OnCli
                 if (file2.exists()) {
                     boolean checkFile = PhotoSelectActivity.this.checkFile(file2);
                     if (!file2.isDirectory() && checkFile) {
-                        PhotoSelectActivity.this.dataListPhoto.add(new ImageModel(file2.getName(), file2.getAbsolutePath(), file2.getAbsolutePath(), false));
+                        PhotoSelectActivity.this.dataListPhoto.add(new ImageModel(file2.getName(), file2.getAbsolutePath(), file2.getAbsolutePath(), false, String.valueOf(file.listFiles().length)));
                         publishProgress(new Void[0]);
                     }
                 }
@@ -374,7 +391,7 @@ public class PhotoSelectActivity extends AppCompatActivity implements View.OnCli
                         boolean checkFile = checkFile(file2);
                         if (!file2.isDirectory() && checkFile) {
                             if (this.listItemSelect.size() < this.limitImageMax) {
-                                addItemSelect(new ImageModel(file2.getName(), file2.getAbsolutePath(), file2.getAbsolutePath(), false));
+                                addItemSelect(new ImageModel(file2.getName(), file2.getAbsolutePath(), file2.getAbsolutePath(), false, String.valueOf(file.listFiles().length)));
                             } else {
                                 Toast.makeText(this, "Limit " + this.limitImageMax + " item", Toast.LENGTH_SHORT).show();
                             }
@@ -431,7 +448,7 @@ public class PhotoSelectActivity extends AppCompatActivity implements View.OnCli
             return new MyViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.piclist_item_selected, viewGroup, false));
         }
 
-        public void onBindViewHolder(MyViewHolder myViewHolder, final int i) {
+        public void onBindViewHolder(MyViewHolder myViewHolder, @SuppressLint("RecyclerView") final int i) {
             ImageModel imageModel = this.moviesList.get(i);
             if (imageModel.getPathFile().contains("mp4")) {
                 myViewHolder.ivPause.setVisibility(View.VISIBLE);

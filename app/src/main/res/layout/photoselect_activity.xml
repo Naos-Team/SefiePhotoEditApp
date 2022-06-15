@@ -5,7 +5,17 @@
         <com.sweet.selfiecameraphotoeditor.common.CustomTextView android:textSize="@dimen/_12sdp" android:textColor="@color/colorWhite" android:id="@+id/txt_title" android:paddingTop="@dimen/_2sdp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Album" android:layout_centerInParent="true"/>
         <ImageView android:id="@+id/img_done" android:padding="@dimen/_14sdp" android:layout_width="@dimen/_44sdp" android:layout_height="@dimen/_44sdp" android:src="@drawable/img_next" android:layout_alignParentRight="true"/>
     </RelativeLayout>
-    <GridView android:gravity="center" android:id="@+id/gridViewAlbum" android:layout_width="match_parent" android:layout_height="match_parent" android:stretchMode="columnWidth" android:numColumns="1" android:layout_above="@+id/txtcount_layout" android:layout_below="@+id/header_layout"/>
+
+    <GridView
+        android:id="@+id/gridViewAlbum"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/txtcount_layout"
+        android:layout_below="@+id/header_layout"
+        android:gravity="center"
+        android:numColumns="3"
+        android:layout_margin="10dp"
+        android:stretchMode="columnWidth" />
     <GridView android:gravity="center" android:id="@+id/gridViewListAlbum" android:background="@android:color/white" android:visibility="gone" android:layout_width="match_parent" android:layout_height="match_parent" android:stretchMode="columnWidth" android:numColumns="3" android:layout_above="@+id/txtcount_layout" android:layout_below="@+id/header_layout"/>
     <RelativeLayout android:id="@+id/txtcount_layout" android:background="@color/colorBlack" android:layout_width="match_parent" android:layout_height="@dimen/_30sdp" android:layout_above="@+id/bottom_layout">
         <com.sweet.selfiecameraphotoeditor.common.CustomTextView android:textSize="@dimen/_10sdp" android:textColor="@color/colorWhite" android:id="@+id/txtTotalImage" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:text="@string/text_images" android:layout_centerVertical="true"/>
