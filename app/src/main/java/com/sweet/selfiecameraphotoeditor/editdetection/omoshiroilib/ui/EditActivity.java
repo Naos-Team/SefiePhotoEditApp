@@ -64,7 +64,6 @@ public class EditActivity extends AppCompatActivity {
 
     public void saveMemes(View view) {
         takePhoto();
-
     }
 
     Bitmap createBitmap;

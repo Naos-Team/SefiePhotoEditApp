@@ -9,11 +9,14 @@
     <color name="circle_shallow_translucent_bg">#26ffffff</color>
     <color name="colorAccent">#000000</color>
     <color name="colorBlack">#313131</color>
-    <color name="colorHeader">#000000</color>
+    <color name="colorHeader">#161616</color>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorWhite">#ffffff</color>
     <color name="header">#f33f8d</color>
+    <color name="bottom_nav_util">#8f92a1</color>
+    <color name="bottom_nav_util_selected">#242424</color>
+    <color name="semi_black">#242424</color>
 
 
     <color name="red_point">#ffff5353</color>
