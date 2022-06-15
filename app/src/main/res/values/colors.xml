@@ -16,7 +16,9 @@
     <color name="header">#f33f8d</color>
     <color name="bottom_nav_util">#8f92a1</color>
     <color name="bottom_nav_util_selected">#242424</color>
-    <color name="semi_black">#242424</color>
+    <color name="semi_black">#454545</color>
+    <color name="semi_text">#a2a2a2</color>
+
 
 
     <color name="red_point">#ffff5353</color>
