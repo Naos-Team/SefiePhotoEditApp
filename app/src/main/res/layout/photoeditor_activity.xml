@@ -64,7 +64,7 @@
         android:layout_below="@+id/admobBanner"
         android:layout_centerInParent="true"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="170dp">
+        android:layout_marginBottom="175dp">
 
         <it.chengdazhi.styleimageview.StyleImageView
             android:id="@+id/ivimg"
@@ -602,10 +602,10 @@
         android:layout_width="match_parent"
         android:layout_height="95dp"
         android:layout_above="@+id/bottom_layout"
-        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_30sdp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:visibility="visible">
+        android:visibility="gone">
 
 
         <LinearLayout
@@ -624,15 +624,23 @@
                 android:textSize="10dp" />
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/btn_camera"
+                android:layout_width="60sp"
+                android:layout_height="35sp"
                 android:layout_marginTop="5sp"
                 android:background="@drawable/shape_semi_icon">
+
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_margin="5sp"
-                    android:src="@drawable/img_subcontract" />
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginEnd="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_take_photo"
+                    android:tint="@color/white" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -653,19 +661,22 @@
                 android:textSize="10dp"/>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/btn_gallery"
+                android:layout_width="60sp"
+                android:layout_height="35sp"
                 android:layout_marginTop="5sp"
                 android:background="@drawable/shape_semi_icon">
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_centerInParent="true"
                     android:layout_marginStart="5sp"
                     android:layout_marginTop="5sp"
                     android:layout_marginEnd="5sp"
                     android:layout_marginBottom="5sp"
-                    android:src="@drawable/img_subsaturation" />
+                    android:src="@drawable/ic_gallery"
+                    android:tint="@color/white" />
             </RelativeLayout>
 
 
@@ -859,6 +870,7 @@
         android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:layout_marginTop="10sp"
         android:layout_marginBottom="15sp"
         android:background="@drawable/nav_edit_photo_utils"
         android:layout_marginHorizontal="35sp"
@@ -877,7 +889,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/btn_camera"
+                    android:id="@+id/btn_sub_photo"
                     android:layout_width="@dimen/_55sdp"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -909,7 +921,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btn_gallery"
+                    android:id="@+id/btn_sub_crop"
                     android:layout_width="@dimen/_55sdp"
                     android:layout_height="match_parent"
                     android:gravity="center"

@@ -84,7 +84,7 @@ public class EditActivity extends AppCompatActivity {
 
 
                 Uri tempUri = getImageUri(getApplicationContext(), bitmap);
-                PhotoEditorActivity.f81f = new File(getRealPathFromURI(tempUri));
+                PhotoEditorActivity.current_img = new File(getRealPathFromURI(tempUri));
                 Log.e("aaaaaaaaaaa", getRealPathFromURI(tempUri) + "");
                 filtercommom.getInstance().bitmap = bitmap;
                 Intent resultIntent = new Intent();

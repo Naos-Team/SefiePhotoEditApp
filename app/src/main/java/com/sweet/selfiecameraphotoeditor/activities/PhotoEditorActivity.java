@@ -75,6 +75,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -97,7 +98,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
     String bgDrawable = "0";
     LinearLayout btnAdjust;
     LinearLayout btnBrightness;
-    LinearLayout btnCamera;
+    RelativeLayout btnCamera;
     LinearLayout btnContrast;
     LinearLayout btnDrawingcolor;
     LinearLayout btnDrawingerase;
@@ -106,14 +107,14 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
     LinearLayout btnDrawingundo;
     LinearLayout btnEffect;
     LinearLayout btnFilter;
-    LinearLayout btnGallery;
+    RelativeLayout btnGallery;
     LinearLayout btnOpacity;
     LinearLayout btnPaint;
     LinearLayout btnRotate;
     LinearLayout btnSituration;
     LinearLayout btnSticker;
     LinearLayout btnText;
-    LinearLayout ll_empty_photo, ll_load_photo;
+    LinearLayout ll_empty_photo, ll_load_photo, photo_layout, btn_sub_photo, btn_sub_crop;
     ImageView btnAddPhoto;
     ImageView cameraSelect;
     ProgressDialog dialog;
@@ -122,7 +123,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
     ImageView effectSelect;
     RecyclerView effectrecycler;
     SeekBar effectseekbar;
-    public static File f81f;
+    public static File current_img;
     ImageView filterSelect;
     String fontName = "";
     ImageView galleryselect;
@@ -231,6 +232,9 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
 
         ll_empty_photo = findViewById(R.id.ll_empty_photo);
         ll_load_photo = findViewById(R.id.ll_load_photo);
+        photo_layout = findViewById(R.id.photo_layout);
+        btn_sub_photo = findViewById(R.id.btn_sub_photo);
+        btn_sub_crop = findViewById(R.id.btn_sub_crop);
 
         this.mImagename = getIntent().getStringExtra("img");
         RequestBuilder<Bitmap> asBitmap = Glide.with((FragmentActivity) this).asBitmap();
@@ -252,6 +256,20 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                 PhotoEditorActivity.this.onBackPressed();
             }
         });
+
+        this.btn_sub_crop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(!is_photo){
+                    Toast.makeText(PhotoEditorActivity.this, getResources().getString(R.string.require_photo), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                startCropActivity(Uri.fromFile(current_img));
+            }
+        });
+
         this.rlLayout = (RelativeLayout) findViewById(R.id.Rl_Layout);
         this.ivimg = (StyleImageView) findViewById(R.id.ivimg);
         this.mainDrawingView = (DrawingView) findViewById(R.id.main_drawing_view);
@@ -261,8 +279,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
         this.adjustLayout = (LinearLayout) findViewById(R.id.adjust_layout);
         this.rlDrawingView = (LinearLayout) findViewById(R.id.rlDrawingView);
         this.imgSave = (ImageView) findViewById(R.id.img_save);
-        this.btnCamera = (LinearLayout) findViewById(R.id.btn_camera);
-        this.btnGallery = (LinearLayout) findViewById(R.id.btn_gallery);
+        this.btnCamera = findViewById(R.id.btn_camera);
+        this.btnGallery = findViewById(R.id.btn_gallery);
         this.btnFilter = (LinearLayout) findViewById(R.id.btn_filter);
         this.btnEffect = (LinearLayout) findViewById(R.id.btn_effect);
         this.btnAdjust = (LinearLayout) findViewById(R.id.btn_adjust);
@@ -274,11 +292,6 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
         this.btnDrawingundo = (LinearLayout) findViewById(R.id.btn_drawingundo);
         this.btnDrawingredo = (LinearLayout) findViewById(R.id.btn_drawingredo);
         this.btnDrawingerase = (LinearLayout) findViewById(R.id.btn_drawingerase);
-//        this.cameraSelect = (ImageView) findViewById(R.id.camera_select);
-//        this.galleryselect = (ImageView) findViewById(R.id.gallery_select);
-//        this.filterSelect = (ImageView) findViewById(R.id.filter_select);
-//        this.effectSelect = (ImageView) findViewById(R.id.effect_select);
-//        this.adjustSelect = (ImageView) findViewById(R.id.adjust_select);
         this.stickerSelect = (ImageView) findViewById(R.id.sticker_select);
         this.textSelect = (ImageView) findViewById(R.id.text_select);
         this.paintSelect = (ImageView) findViewById(R.id.paint_select);
@@ -378,9 +391,54 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
             @SuppressLint({"WrongConstant"})
             public void onClick(View view) {
 
+                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                PhotoEditorActivity.this.current_img = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.jpg");
+                if (Build.VERSION.SDK_INT < 24) {
+                    intent.putExtra("output", Uri.fromFile(PhotoEditorActivity.this.current_img));
+                } else {
+                    Context applicationContext = PhotoEditorActivity.this.getApplicationContext();
+                    intent.putExtra("output", FileProvider.getUriForFile(applicationContext, PhotoEditorActivity.this.getPackageName() + ".provider", PhotoEditorActivity.this.current_img));
+                }
+                intent.addFlags(1);
+                if (intent.resolveActivity(PhotoEditorActivity.this.getPackageManager()) != null) {
+                    PhotoEditorActivity.this.startActivityForResult(intent, 111);
+                }
+            }
+        });
+
+        this.btn_sub_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (PhotoEditorActivity.this.photo_layout.getVisibility() == View.GONE) {
+
+                    photo_layout.setVisibility(View.VISIBLE);
+                    PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
+                    PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
+                    PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
+                    PhotoEditorActivity.this.seekbarmainopacitylayout.setVisibility(View.GONE);
+                    PhotoEditorActivity.this.seekbarsaturationlayout.setVisibility(View.GONE);
+                    PhotoEditorActivity.this.seekbarcontrastlayout.setVisibility(View.GONE);
+                    PhotoEditorActivity.this.seekbarbrightnesslayout.setVisibility(View.GONE);
+                    PhotoEditorActivity.this.stickerrecycler.setVisibility(View.GONE);
+                    PhotoEditorActivity.this.stickerclose.setVisibility(View.GONE);
+                    PhotoEditorActivity.this.rlDrawingView.setVisibility(View.GONE);
+                    PhotoEditorActivity.this.seekbardrawingstroke.setVisibility(View.GONE);
+                    PhotoEditorActivity.this.mainDrawingView.setVisibility(View.GONE);
+                    if (PhotoEditorActivity.this.mainDrawingView.getWidth() > 0 || PhotoEditorActivity.this.mainDrawingView.getHeight() > 0) {
+                        PhotoEditorActivity.this.ivDrawImage.setVisibility(View.VISIBLE);
+                        PhotoEditorActivity.this.mainDrawingView.setDrawingCacheEnabled(true);
+                        PhotoEditorActivity.this.mainDrawingView.layout(0, 0, PhotoEditorActivity.this.mainDrawingView.getWidth(), PhotoEditorActivity.this.mainDrawingView.getHeight());
+                        PhotoEditorActivity.this.mainDrawingView.buildDrawingCache();
+                        PhotoEditorActivity.this.ivDrawImage.setImageBitmap(Bitmap.createBitmap(PhotoEditorActivity.this.mainDrawingView.getDrawingCache()));
+                        return;
+                    }
+                    return;
+                }
+
+                photo_layout.setVisibility(View.GONE);
+                PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
-                PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbarmainopacitylayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbarsaturationlayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbarcontrastlayout.setVisibility(View.GONE);
@@ -397,36 +455,13 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                     PhotoEditorActivity.this.mainDrawingView.buildDrawingCache();
                     PhotoEditorActivity.this.ivDrawImage.setImageBitmap(Bitmap.createBitmap(PhotoEditorActivity.this.mainDrawingView.getDrawingCache()));
                 }
-                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-                PhotoEditorActivity.this.f81f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.jpg");
-                if (Build.VERSION.SDK_INT < 24) {
-                    intent.putExtra("output", Uri.fromFile(PhotoEditorActivity.this.f81f));
-                } else {
-                    Context applicationContext = PhotoEditorActivity.this.getApplicationContext();
-                    intent.putExtra("output", FileProvider.getUriForFile(applicationContext, PhotoEditorActivity.this.getPackageName() + ".provider", PhotoEditorActivity.this.f81f));
-                }
-                intent.addFlags(1);
-                if (intent.resolveActivity(PhotoEditorActivity.this.getPackageManager()) != null) {
-                    PhotoEditorActivity.this.startActivityForResult(intent, 111);
-                }
             }
         });
+
         this.btnGallery.setOnClickListener(new View.OnClickListener() {
             @SuppressLint({"WrongConstant"})
             public void onClick(View view) {
 
-                PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
-                PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
-                PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
-                PhotoEditorActivity.this.seekbarmainopacitylayout.setVisibility(View.GONE);
-                PhotoEditorActivity.this.seekbarsaturationlayout.setVisibility(View.GONE);
-                PhotoEditorActivity.this.seekbarcontrastlayout.setVisibility(View.GONE);
-                PhotoEditorActivity.this.seekbarbrightnesslayout.setVisibility(View.GONE);
-                PhotoEditorActivity.this.stickerrecycler.setVisibility(View.GONE);
-                PhotoEditorActivity.this.stickerclose.setVisibility(View.GONE);
-                PhotoEditorActivity.this.rlDrawingView.setVisibility(View.GONE);
-                PhotoEditorActivity.this.seekbardrawingstroke.setVisibility(View.GONE);
-                PhotoEditorActivity.this.mainDrawingView.setVisibility(View.GONE);
                 if (PhotoEditorActivity.this.mainDrawingView.getWidth() > 0 || PhotoEditorActivity.this.mainDrawingView.getHeight() > 0) {
                     PhotoEditorActivity.this.ivDrawImage.setVisibility(View.VISIBLE);
                     PhotoEditorActivity.this.mainDrawingView.setDrawingCacheEnabled(true);
@@ -447,8 +482,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                     Toast.makeText(PhotoEditorActivity.this, getResources().getString(R.string.require_photo), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                
 
+                photo_layout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
@@ -487,6 +522,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                     PhotoEditorActivity.this.effectrecycler.setVisibility(View.VISIBLE);
                     PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.VISIBLE);
 
+                    photo_layout.setVisibility(View.GONE);
                     PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
                     PhotoEditorActivity.this.seekbarmainopacitylayout.setVisibility(View.GONE);
                     PhotoEditorActivity.this.seekbarsaturationlayout.setVisibility(View.GONE);
@@ -540,29 +576,11 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                     }
 
                     PhotoEditorActivity.this.adjustLayout.setVisibility(View.VISIBLE);
-                    PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.seekbarmainopacitylayout.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.seekbarsaturationlayout.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.seekbarcontrastlayout.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.seekbarbrightnesslayout.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.stickerrecycler.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.stickerclose.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.rlDrawingView.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.seekbardrawingstroke.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.mainDrawingView.setVisibility(View.GONE);
-                    if (PhotoEditorActivity.this.mainDrawingView.getWidth() > 0 || PhotoEditorActivity.this.mainDrawingView.getHeight() > 0) {
-                        PhotoEditorActivity.this.ivDrawImage.setVisibility(View.VISIBLE);
-                        PhotoEditorActivity.this.mainDrawingView.setDrawingCacheEnabled(true);
-                        PhotoEditorActivity.this.mainDrawingView.layout(0, 0, PhotoEditorActivity.this.mainDrawingView.getWidth(), PhotoEditorActivity.this.mainDrawingView.getHeight());
-                        PhotoEditorActivity.this.mainDrawingView.buildDrawingCache();
-                        PhotoEditorActivity.this.ivDrawImage.setImageBitmap(Bitmap.createBitmap(PhotoEditorActivity.this.mainDrawingView.getDrawingCache()));
-                        return;
-                    }
-                    return;
+                }else{
+                    PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
                 }
 
-                PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
+                photo_layout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbarmainopacitylayout.setVisibility(View.GONE);
@@ -581,6 +599,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                     PhotoEditorActivity.this.mainDrawingView.buildDrawingCache();
                     PhotoEditorActivity.this.ivDrawImage.setImageBitmap(Bitmap.createBitmap(PhotoEditorActivity.this.mainDrawingView.getDrawingCache()));
                 }
+
+
             }
         });
         this.btnSticker.setOnClickListener(new View.OnClickListener() {
@@ -593,36 +613,13 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                         return;
                     }
 
-                    PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.seekbarmainopacitylayout.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.seekbarsaturationlayout.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.seekbarcontrastlayout.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.seekbarbrightnesslayout.setVisibility(View.GONE);
                     PhotoEditorActivity.this.stickerrecycler.setVisibility(View.VISIBLE);
                     PhotoEditorActivity.this.stickerclose.setVisibility(View.VISIBLE);
-                    PhotoEditorActivity.this.rlDrawingView.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.seekbardrawingstroke.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.mainDrawingView.setVisibility(View.GONE);
-                    if (PhotoEditorActivity.this.mainDrawingView.getWidth() > 0 || PhotoEditorActivity.this.mainDrawingView.getHeight() > 0) {
-                        PhotoEditorActivity.this.ivDrawImage.setVisibility(View.VISIBLE);
-                        PhotoEditorActivity.this.mainDrawingView.setDrawingCacheEnabled(true);
-                        PhotoEditorActivity.this.mainDrawingView.layout(0, 0, PhotoEditorActivity.this.mainDrawingView.getWidth(), PhotoEditorActivity.this.mainDrawingView.getHeight());
-                        PhotoEditorActivity.this.mainDrawingView.buildDrawingCache();
-                        PhotoEditorActivity.this.ivDrawImage.setImageBitmap(Bitmap.createBitmap(PhotoEditorActivity.this.mainDrawingView.getDrawingCache()));
-                        return;
-                    }
-                    return;
+                }else{
+                    PhotoEditorActivity.this.stickerrecycler.setVisibility(View.GONE);
+                    PhotoEditorActivity.this.stickerclose.setVisibility(View.GONE);
                 }
-//                PhotoEditorActivity.this.cameraSelect.setVisibility(View.GONE);
-//                PhotoEditorActivity.this.galleryselect.setVisibility(View.GONE);
-//                PhotoEditorActivity.this.filterSelect.setVisibility(View.GONE);
-//                PhotoEditorActivity.this.effectSelect.setVisibility(View.GONE);
-//                PhotoEditorActivity.this.adjustSelect.setVisibility(View.GONE);
-//                PhotoEditorActivity.this.stickerSelect.setVisibility(View.GONE);
-//                PhotoEditorActivity.this.textSelect.setVisibility(View.GONE);
-//                PhotoEditorActivity.this.paintSelect.setVisibility(View.GONE);
+                photo_layout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
@@ -630,8 +627,6 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                 PhotoEditorActivity.this.seekbarsaturationlayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbarcontrastlayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbarbrightnesslayout.setVisibility(View.GONE);
-                PhotoEditorActivity.this.stickerrecycler.setVisibility(View.GONE);
-                PhotoEditorActivity.this.stickerclose.setVisibility(View.GONE);
                 PhotoEditorActivity.this.rlDrawingView.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbardrawingstroke.setVisibility(View.GONE);
                 PhotoEditorActivity.this.mainDrawingView.setVisibility(View.GONE);
@@ -642,6 +637,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                     PhotoEditorActivity.this.mainDrawingView.buildDrawingCache();
                     PhotoEditorActivity.this.ivDrawImage.setImageBitmap(Bitmap.createBitmap(PhotoEditorActivity.this.mainDrawingView.getDrawingCache()));
                 }
+
             }
         });
         this.btnText.setOnClickListener(new View.OnClickListener() {
@@ -686,36 +682,14 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                         return;
                     }
 
-                    PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.seekbarmainopacitylayout.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.seekbarsaturationlayout.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.seekbarcontrastlayout.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.seekbarbrightnesslayout.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.stickerrecycler.setVisibility(View.GONE);
-                    PhotoEditorActivity.this.stickerclose.setVisibility(View.GONE);
                     PhotoEditorActivity.this.rlDrawingView.setVisibility(View.VISIBLE);
                     PhotoEditorActivity.this.mainDrawingView.setVisibility(View.VISIBLE);
-                    PhotoEditorActivity.this.seekbardrawingstroke.setVisibility(View.GONE);
-                    if (PhotoEditorActivity.this.mainDrawingView.getWidth() > 0 || PhotoEditorActivity.this.mainDrawingView.getHeight() > 0) {
-                        PhotoEditorActivity.this.ivDrawImage.setVisibility(View.VISIBLE);
-                        PhotoEditorActivity.this.mainDrawingView.setDrawingCacheEnabled(true);
-                        PhotoEditorActivity.this.mainDrawingView.layout(0, 0, PhotoEditorActivity.this.mainDrawingView.getWidth(), PhotoEditorActivity.this.mainDrawingView.getHeight());
-                        PhotoEditorActivity.this.mainDrawingView.buildDrawingCache();
-                        PhotoEditorActivity.this.ivDrawImage.setImageBitmap(Bitmap.createBitmap(PhotoEditorActivity.this.mainDrawingView.getDrawingCache()));
-                        return;
-                    }
-                    return;
+                }else{
+                    PhotoEditorActivity.this.rlDrawingView.setVisibility(View.GONE);
+                    PhotoEditorActivity.this.mainDrawingView.setVisibility(View.GONE);
                 }
-//                PhotoEditorActivity.this.cameraSelect.setVisibility(View.GONE);
-//                PhotoEditorActivity.this.galleryselect.setVisibility(View.GONE);
-//                PhotoEditorActivity.this.filterSelect.setVisibility(View.GONE);
-//                PhotoEditorActivity.this.effectSelect.setVisibility(View.GONE);
-//                PhotoEditorActivity.this.adjustSelect.setVisibility(View.GONE);
-//                PhotoEditorActivity.this.stickerSelect.setVisibility(View.GONE);
-//                PhotoEditorActivity.this.textSelect.setVisibility(View.GONE);
-//                PhotoEditorActivity.this.paintSelect.setVisibility(View.GONE);
-                PhotoEditorActivity.this.adjustLayout.setVisibility(View.GONE);
+
+                photo_layout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.effectrecycler.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbaropacitylayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbarmainopacitylayout.setVisibility(View.GONE);
@@ -724,8 +698,6 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                 PhotoEditorActivity.this.seekbarbrightnesslayout.setVisibility(View.GONE);
                 PhotoEditorActivity.this.stickerrecycler.setVisibility(View.GONE);
                 PhotoEditorActivity.this.stickerclose.setVisibility(View.GONE);
-                PhotoEditorActivity.this.rlDrawingView.setVisibility(View.GONE);
-                PhotoEditorActivity.this.mainDrawingView.setVisibility(View.GONE);
                 PhotoEditorActivity.this.seekbardrawingstroke.setVisibility(View.GONE);
                 if (PhotoEditorActivity.this.mainDrawingView.getWidth() > 0 || PhotoEditorActivity.this.mainDrawingView.getHeight() > 0) {
                     PhotoEditorActivity.this.ivDrawImage.setVisibility(View.VISIBLE);
@@ -734,6 +706,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                     PhotoEditorActivity.this.mainDrawingView.buildDrawingCache();
                     PhotoEditorActivity.this.ivDrawImage.setImageBitmap(Bitmap.createBitmap(PhotoEditorActivity.this.mainDrawingView.getDrawingCache()));
                 }
+
             }
         });
         this.btnDrawingcolor.setOnClickListener(new View.OnClickListener() {
@@ -1065,7 +1038,16 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                 Log.e("hello", "kjfddsfjdshfksdhkfj");
 
                 try {
-                    this.mBitmap1 = BitmapFactory.decodeFile(this.f81f.getAbsolutePath());
+
+                    File file = new File(Utils.SAVED_IMG_PATH);
+                    if (!file.exists()) {
+                        file.mkdirs();
+                    }
+
+                    this.mImagename = "temp" + ".png";
+
+//                    startCropActivity(Uri.fromFile(current_img));
+                    this.mBitmap1 = BitmapFactory.decodeFile(this.current_img.getAbsolutePath());
                     Bitmap bitmap = this.mBitmap1;
                     double height2 = (double) this.mBitmap1.getHeight();
                     double width2 = (double) this.mBitmap1.getWidth();
@@ -1075,20 +1057,41 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                     Matrix matrix = new Matrix();
                     matrix.postRotate((float) i3);
                     this.mGlobal.setImage(Bitmap.createBitmap(this.mBitmap1, 0, 0, this.mBitmap1.getWidth(), this.mBitmap1.getHeight(), matrix, true));
-                    startCropActivity(Uri.fromFile(this.f81f));
+
+                    saveTempBitmap(bitmap);
+
                 } catch (Exception e3) {
                     e3.printStackTrace();
                 }
             } else if (i == SELECT_FILE) {
                 try {
-                    this.f81f = Utils.getFile(this, intent.getData());
-                    Glide.with(getApplicationContext()).asBitmap().load(this.f81f).into(new SimpleTarget<Bitmap>(CropImageView.DEFAULT_IMAGE_TO_CROP_BOUNDS_ANIM_DURATION, CropImageView.DEFAULT_IMAGE_TO_CROP_BOUNDS_ANIM_DURATION) {
+                    this.current_img = Utils.getFile(this, intent.getData());
 
-
+                    Glide.with(getApplicationContext()).asBitmap().load(this.current_img).into(new SimpleTarget<Bitmap>(CropImageView.DEFAULT_IMAGE_TO_CROP_BOUNDS_ANIM_DURATION, CropImageView.DEFAULT_IMAGE_TO_CROP_BOUNDS_ANIM_DURATION) {
                         public void onResourceReady(@NonNull Bitmap bitmap, @Nullable Transition<? super Bitmap> transition) {
-                            PhotoEditorActivity.this.mGlobal.setImage(bitmap);
+                            ll_empty_photo.setVisibility(View.GONE);
+                            ll_load_photo.setVisibility(View.GONE);
+                            is_photo = true;
+                            PhotoEditorActivity.this.ivimg.setImageBitmap(bitmap);
                             PhotoEditorActivity photoEditorActivity = PhotoEditorActivity.this;
-                            photoEditorActivity.startCropActivity(Uri.fromFile(photoEditorActivity.f81f));
+                            photoEditorActivity.original = bitmap;
+                            photoEditorActivity.width = photoEditorActivity.original.getWidth();
+                            PhotoEditorActivity photoEditorActivity2 = PhotoEditorActivity.this;
+                            photoEditorActivity2.height = photoEditorActivity2.original.getHeight();
+                        }
+
+                        @Override
+                        public void onLoadStarted(@Nullable Drawable placeholder) {
+                            ll_load_photo.setVisibility(View.VISIBLE);
+                            super.onLoadStarted(placeholder);
+                        }
+
+                        @Override
+                        public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                            ll_empty_photo.setVisibility(View.VISIBLE);
+                            ll_load_photo.setVisibility(View.GONE);
+                            is_photo = false;
+                            super.onLoadFailed(errorDrawable);
                         }
                     });
                 } catch (Exception e) {
@@ -1108,7 +1111,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
 
 
             try {
-                this.mBitmap1 = BitmapFactory.decodeFile(this.f81f.getAbsolutePath());
+                this.mBitmap1 = BitmapFactory.decodeFile(this.current_img.getAbsolutePath());
                 Bitmap bitmap = this.mBitmap1;
                 double height2 = (double) this.mBitmap1.getHeight();
                 double width2 = (double) this.mBitmap1.getWidth();
@@ -1118,7 +1121,10 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                 Matrix matrix = new Matrix();
                 matrix.postRotate((float) i3);
                 this.mGlobal.setImage(Bitmap.createBitmap(this.mBitmap1, 0, 0, this.mBitmap1.getWidth(), this.mBitmap1.getHeight(), matrix, true));
-                startCropActivity(Uri.fromFile(this.f81f));
+                startCropActivity(Uri.fromFile(this.current_img));
+
+                saveTempBitmap(bitmap);9
+
             } catch (Exception e3) {
                 e3.printStackTrace();
             }
@@ -1268,21 +1274,41 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
         startActivityForResult(intent2, 2);
     }
 
+    private void saveTempBitmap(Bitmap bitmap) throws Exception {
+        File file = new File(Utils.SAVED_IMG_PATH, this.mImagename);
+        if (file.exists()) {
+            file.delete();
+        }
+
+        OutputStream os;
+        try {
+            os = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+            os.flush();
+            os.close();
+        } catch (Exception e) {
+            Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
+        }
+
+        if (Build.VERSION.SDK_INT >= 19) {
+            Intent intent = new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE");
+            intent.setData(Uri.parse("file://" + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)));
+            sendBroadcast(intent);
+        } else {
+            sendBroadcast(new Intent("android.intent.action.MEDIA_MOUNTED", Uri.parse("file://" + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM))));
+        }
+        sendBroadcast(new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE", Uri.fromFile(new File(file.getAbsolutePath()))));
+        Intent intent2 = new Intent(this, PhotoEditorActivity.class);
+        intent2.putExtra("img", this.mImagename);
+        intent2.putExtra("iseffect", true);
+        startActivityForResult(intent2, 2);
+    }
+
     class C13331 extends SimpleTarget<Bitmap> {
         C13331() {
         }
 
-        @Override
-        public void onStart() {
-            ll_load_photo.setVisibility(View.VISIBLE);
-            super.onStart();
-        }
 
-        @Override
-        public void onLoadStarted(@Nullable Drawable placeholder) {
-            ll_load_photo.setVisibility(View.VISIBLE);
-            super.onLoadStarted(placeholder);
-        }
 
         public void onResourceReady(@NonNull Bitmap bitmap, @Nullable Transition<? super Bitmap> transition) {
             ll_empty_photo.setVisibility(View.GONE);
@@ -1294,6 +1320,12 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
             photoEditorActivity.width = photoEditorActivity.original.getWidth();
             PhotoEditorActivity photoEditorActivity2 = PhotoEditorActivity.this;
             photoEditorActivity2.height = photoEditorActivity2.original.getHeight();
+        }
+
+        @Override
+        public void onLoadStarted(@Nullable Drawable placeholder) {
+            ll_load_photo.setVisibility(View.VISIBLE);
+            super.onLoadStarted(placeholder);
         }
 
         @Override
