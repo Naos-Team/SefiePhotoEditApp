@@ -598,7 +598,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/adjust_layout"
+        android:id="@+id/photo_layout"
         android:layout_width="match_parent"
         android:layout_height="95dp"
         android:layout_above="@+id/bottom_layout"
@@ -606,6 +606,83 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:visibility="visible">
+
+
+        <LinearLayout
+            android:id="@+id/btn_contrast"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:text="Take a photo"
+                android:textColor="@color/semi_text"
+                android:textSize="10dp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:background="@drawable/shape_semi_icon">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_margin="5sp"
+                    android:src="@drawable/img_subcontract" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_situration"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.sweet.selfiecameraphotoeditor.common.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:text="Gallery"
+                android:textColor="@color/semi_text"
+                android:textSize="10dp"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:background="@drawable/shape_semi_icon">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginEnd="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:src="@drawable/img_subsaturation" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/adjust_layout"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/btn_rotate"
