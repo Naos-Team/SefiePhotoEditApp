@@ -2,8 +2,6 @@
     <string name="app_name">Selfie Cam Photo Editor</string>
 
 
-
-
     <string name="admob_app_unit_id">ca-app-pub-3940256099942544~3347511713</string>
 
 
@@ -12,7 +10,6 @@
     <string name="g_inr">ca-app-pub-3940256099942544/1033173712</string>
 
     <string name="require_photo">You must choose a photo first!</string>
-
 
 
     <string name="cancel">Cancel</string>

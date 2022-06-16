@@ -266,7 +266,11 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                     return;
                 }
 
-                startCropActivity(Uri.fromFile(current_img));
+//                startCropActivity(Uri.fromFile(current_img));
+                Intent intent = new Intent(PhotoEditorActivity.this, CropImageActivity.class);
+                intent.putExtra("uri_img", (Uri.fromFile(current_img)).toString());
+
+                startActivity(intent);
             }
         });
 
@@ -1123,7 +1127,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
                 this.mGlobal.setImage(Bitmap.createBitmap(this.mBitmap1, 0, 0, this.mBitmap1.getWidth(), this.mBitmap1.getHeight(), matrix, true));
                 startCropActivity(Uri.fromFile(this.current_img));
 
-                saveTempBitmap(bitmap);9
+                saveTempBitmap(bitmap);
 
             } catch (Exception e3) {
                 e3.printStackTrace();
@@ -1325,6 +1329,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
         @Override
         public void onLoadStarted(@Nullable Drawable placeholder) {
             ll_load_photo.setVisibility(View.VISIBLE);
+            ll_empty_photo.setVisibility(View.GONE);
             super.onLoadStarted(placeholder);
         }
 
