@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sweet.selfiecameraphotoeditor.R;
@@ -42,8 +43,38 @@ public class ScaleItemAdapter extends RecyclerView.Adapter<ScaleItemAdapter.MyVi
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         ScaleItem item = scaleItems.get(position);
 
-        holder.iv_scale.setImageDrawable(context.getResources().getDrawable(item.getThumbnail()));
         holder.tv_title.setText(item.getTitle());
+
+        int x = item.getScaleX();
+        int y = item.getScaleY();
+
+
+        if(item.getId() == 0){
+            holder.iv_custom.setVisibility(View.VISIBLE);
+        }
+
+        if(x > y){
+            double new_scale = round((double) y/x, 1);
+            int new_height = (int) (new_scale * holder.rl_scale_border.getLayoutParams().width);
+            holder.rl_scale.getLayoutParams().height = new_height;
+            holder.iv_custom.setVisibility(View.GONE);
+        }else if(y > x){
+            double new_scale = round((double) x/y, 1);
+            int new_width = (int) (new_scale * holder.rl_scale_border.getLayoutParams().height);
+            holder.rl_scale.getLayoutParams().width = new_width;
+            holder.iv_custom.setVisibility(View.GONE);
+        }
+
+        holder.rl_scale_border.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onClick(item);
+            }
+        });
+
+        holder.rl_scale.requestLayout();
+
+
     }
 
     @Override
@@ -51,16 +82,32 @@ public class ScaleItemAdapter extends RecyclerView.Adapter<ScaleItemAdapter.MyVi
         return scaleItems.size();
     }
 
+    public void setData(ArrayList<ScaleItem> arrayList){
+        this.scaleItems = arrayList;
+    }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        ImageView iv_scale;
+        RelativeLayout rl_scale, rl_scale_border;
         TextView tv_title;
+        ImageView iv_custom;
 
         public MyViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
 
-            iv_scale = itemView.findViewById(R.id.iv_scale);
+            rl_scale = itemView.findViewById(R.id.rl_scale);
             tv_title = itemView.findViewById(R.id.tv_title);
+            rl_scale_border = itemView.findViewById(R.id.rl_scale_border);
+            iv_custom = itemView.findViewById(R.id.iv_custom);
         }
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 
     public interface ScaleItemListener{

@@ -10,7 +10,7 @@
     <RelativeLayout
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:background="@color/colorHeader">
 
     </RelativeLayout>
@@ -20,7 +20,9 @@
         android:layout_width="match_parent"
         android:background="#1E1E1E"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        app:cropBorderCornerColor="@android:color/transparent"
+        app:cropGuidelines="on"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -30,9 +32,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_scale"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_above="@id/bottom_layout"
-            android:layout_marginVertical="10dp"
+            android:layout_marginVertical="7dp"
             android:layout_marginLeft="20dp" />
 
         <LinearLayout

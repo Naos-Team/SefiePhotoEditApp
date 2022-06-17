@@ -5,15 +5,13 @@ public class ScaleItem {
     private String title;
     private int scaleX;
     private int scaleY;
-    private int thumbnail;
     private boolean isSelected;
 
-    public ScaleItem(int id, String title, int scaleX, int scaleY, int thumbnail, boolean isSelected) {
+    public ScaleItem(int id, String title, int scaleX, int scaleY, boolean isSelected) {
         this.id = id;
         this.title = title;
         this.scaleX = scaleX;
         this.scaleY = scaleY;
-        this.thumbnail = thumbnail;
         this.isSelected = isSelected;
     }
 
@@ -23,14 +21,6 @@ public class ScaleItem {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(int thumbnail) {
-        this.thumbnail = thumbnail;
     }
 
     public String getTitle() {

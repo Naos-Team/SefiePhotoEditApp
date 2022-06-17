@@ -1,16 +1,21 @@
 package com.sweet.selfiecameraphotoeditor.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.sweet.selfiecameraphotoeditor.R;
+import com.sweet.selfiecameraphotoeditor.adapter.ScaleItemAdapter;
 import com.sweet.selfiecameraphotoeditor.model.ScaleItem;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -23,6 +28,7 @@ public class CropImageActivity extends AppCompatActivity {
     private ImageView btn_save;
     private RecyclerView rv_scale;
     private ArrayList<ScaleItem> scaleItems;
+    private ScaleItemAdapter scaleItemAdapter;
     private Uri mUri;
 
     @Override
@@ -62,13 +68,33 @@ public class CropImageActivity extends AppCompatActivity {
 
     private void setUpScaleList() {
         scaleItems = new ArrayList<>();
-        scaleItems.add(new ScaleItem(0, "Free", 0, 0, R.drawable.ic_nav_crop,false));
-        scaleItems.add(new ScaleItem(1, "1:1", 1, 1, R.drawable.ic_nav_effect,false));
-        scaleItems.add(new ScaleItem(2, "3:4", 3, 4, R.drawable.ic_nav_filters,false));
-        scaleItems.add(new ScaleItem(3, "5:4", 5, 4, R.drawable.ic_nav_text,false));
-        scaleItems.add(new ScaleItem(4, "9:16", 9, 16, R.drawable.ic_nav_paint,false));
+        scaleItems.add(new ScaleItem(0, "Custom", 1, 1, false));
+        scaleItems.add(new ScaleItem(1, "1:1", 1, 1, false));
+        scaleItems.add(new ScaleItem(2, "3:4", 3, 4, false));
+        scaleItems.add(new ScaleItem(3, "4:3", 4, 3, false));
+        scaleItems.add(new ScaleItem(4, "16:9", 16, 9, false));
+        scaleItems.add(new ScaleItem(5, "9:16", 9, 16, false));
+
+
+
+        rv_scale.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        rv_scale.setItemAnimator(new DefaultItemAnimator());
+
+        scaleItemAdapter = new ScaleItemAdapter(scaleItems, new ScaleItemAdapter.ScaleItemListener() {
+            @Override
+            public void onClick(ScaleItem item) {
+                if(item.getId() == 0){
+                    cropImageView.setFixedAspectRatio(false);
+                }else{
+                    cropImageView.setFixedAspectRatio(true);
+                    cropImageView.setAspectRatio(item.getScaleX(), item.getScaleY());
+                }
+            }
+        });
+
+        rv_scale.setAdapter(scaleItemAdapter);
+
 
     }
-
 
 }

@@ -1312,7 +1312,12 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
         C13331() {
         }
 
-
+        @Override
+        public void onStart() {
+            ll_empty_photo.setVisibility(View.GONE);
+            ll_load_photo.setVisibility(View.VISIBLE);
+            super.onStart();
+        }
 
         public void onResourceReady(@NonNull Bitmap bitmap, @Nullable Transition<? super Bitmap> transition) {
             ll_empty_photo.setVisibility(View.GONE);
@@ -1328,15 +1333,15 @@ public class PhotoEditorActivity extends AppCompatActivity implements C2745c.C26
 
         @Override
         public void onLoadStarted(@Nullable Drawable placeholder) {
-            ll_load_photo.setVisibility(View.VISIBLE);
             ll_empty_photo.setVisibility(View.GONE);
+            ll_load_photo.setVisibility(View.VISIBLE);
             super.onLoadStarted(placeholder);
         }
 
         @Override
         public void onLoadFailed(@Nullable Drawable errorDrawable) {
-            ll_empty_photo.setVisibility(View.VISIBLE);
             ll_load_photo.setVisibility(View.GONE);
+            ll_empty_photo.setVisibility(View.VISIBLE);
             is_photo = false;
             super.onLoadFailed(errorDrawable);
         }
