@@ -35,9 +35,11 @@
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/customexitshape.xml" value="0.1595" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/customshape.xml" value="0.231" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/main_banner.xml" value="0.2385" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/drawable/shape_semi_icon.xml" value="0.197" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/action_item_horizontal.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/action_item_vertical.xml" value="0.23229166666666667" />
-        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/activity_crop_image.xml" value="0.13177083333333334" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/activity_crop_image.xml" value="0.16" />
+        <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/activity_delete_background.xml" value="0.4" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/activity_filter.xml" value="0.23229166666666667" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/activity_main.xml" value="0.152" />
         <entry key="..\:/Work/SelfieApp/app/src/main/res/layout/ad_unified.xml" value="0.23229166666666667" />

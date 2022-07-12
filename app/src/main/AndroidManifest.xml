@@ -27,17 +27,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".DeleteBackgroundActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/admob_app_unit_id" />
 
         <activity
-            android:name="com.sweet.selfiecameraphotoeditor.activities.CropImageActivity"
+            android:name=".CropImageActivity"
             android:exported="false" />
-
         <activity
-            android:name="com.sweet.selfiecameraphotoeditor.activities.SplashScreenActivity"
+            android:name=".SplashScreenActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,40 +48,40 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.sweet.selfiecameraphotoeditor.activities.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.sweet.selfiecameraphotoeditor.activities.SweetCameraActivity"
+            android:name=".SweetCameraActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.sweet.selfiecameraphotoeditor.activities.PhotoEditorActivity"
+            android:name=".PhotoEditorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.sweet.selfiecameraphotoeditor.activities.TextActivity"
+            android:name=".TextActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.sweet.selfiecameraphotoeditor.activities.PhotoSelectActivity"
+            android:name=".PhotoSelectActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.sweet.selfiecameraphotoeditor.activities.PhotoCollageActivity"
+            android:name=".PhotoCollageActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.sweet.selfiecameraphotoeditor.activities.PhotoShareActivity"
+            android:name=".PhotoShareActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.sweet.selfiecameraphotoeditor.activities.CameraStartActivity"
+            android:name=".CameraStartActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.sweet.selfiecameraphotoeditor.activities.CameraPhotoSaveActivity"
+            android:name=".CameraPhotoSaveActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.sweet.selfiecameraphotoeditor.activities.CameraStickerPhotoSaveActivity"
+            android:name=".CameraStickerPhotoSaveActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.sweet.selfiecameraphotoeditor.activities.CameraPhotoShareActivity"
+            android:name=".CameraPhotoShareActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.sweet.selfiecameraphotoeditor.activities.MYCreationActivity"
+            android:name=".MYCreationActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"

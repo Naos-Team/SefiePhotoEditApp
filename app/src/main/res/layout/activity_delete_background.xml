@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.DeleteBackgroundActivity">
+
+    <RelativeLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorHeader">
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/cropImageView"
+        android:layout_width="match_parent"
+        android:background="#1E1E1E"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:cropBorderCornerColor="@android:color/transparent"
+        app:cropGuidelines="on"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/colorHeader"
+        android:layout_height="200dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_layout"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:id="@+id/ll_do"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="7dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="start">
+                    <ImageView
+                        android:id="@+id/undo"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="20dp"
+                        android:src="@drawable/undo_del_bg"
+                        app:tint="@color/white" />
+
+                    <ImageView
+                        android:id="@+id/redo"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/redo_del_bg"
+                        app:tint="@color/white" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="end"
+                    android:gravity="end">
+                    <ImageView
+                        android:id="@+id/zoom_in"
+                        android:layout_gravity="end"
+                        android:layout_width="33dp"
+                        android:layout_height="33dp"
+                        android:src="@drawable/ic_zoom_in"
+                        app:tint="@color/white" />
+
+                    <ImageView
+                        android:id="@+id/zoom_out"
+                        android:layout_width="33dp"
+                        android:layout_height="33dp"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/ic_zoom_out"
+                        android:layout_marginEnd="22dp"
+                        app:tint="@color/white" />
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_edit"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/erase"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_width="37dp"
+                    android:layout_height="37dp"
+                    android:src="@drawable/erase"
+                    app:tint="@color/white" />
+
+                <ImageView
+                    android:id="@+id/del"
+                    android:layout_width="37dp"
+                    android:layout_height="37dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_del_bg"
+                    app:tint="@color/white" />
+
+                <SeekBar
+                    android:id="@+id/stroke_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+
+        <LinearLayout
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="10sp"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="25sp"
+            android:layout_alignParentBottom="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:adjustViewBounds="true"
+                app:tint="#D2FFFFFF"
+                android:src="@drawable/ic_exit_adjust"/>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_height="match_parent"
+                android:gravity="right|center_vertical"
+                android:background="@drawable/nav_edit_photo_utils">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="REMOVE BACKGROUND"
+                    android:textSize="18dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorHeader"/>
+
+\
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/btn_save"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_accept_adjust"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

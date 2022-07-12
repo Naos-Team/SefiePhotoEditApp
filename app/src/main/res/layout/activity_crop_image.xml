@@ -51,7 +51,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:adjustViewBounds="true"
-                android:tint="#D2FFFFFF"
+                app:tint="#D2FFFFFF"
                 android:src="@drawable/ic_exit_adjust"/>
             
             <LinearLayout
@@ -89,7 +89,7 @@
                         android:layout_marginBottom="8dp"
                         android:adjustViewBounds="true"
                         android:src="@drawable/ic_nav_crop"
-                        android:tint="@color/white" />
+                        app:tint="@color/white" />
                 </RelativeLayout>
 
             </LinearLayout>
