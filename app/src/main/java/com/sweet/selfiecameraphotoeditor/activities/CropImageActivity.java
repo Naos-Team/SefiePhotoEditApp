@@ -18,6 +18,7 @@ import com.sweet.selfiecameraphotoeditor.R;
 import com.sweet.selfiecameraphotoeditor.adapter.ScaleItemAdapter;
 import com.sweet.selfiecameraphotoeditor.model.ScaleItem;
 import com.theartofdev.edmodo.cropper.CropImageView;
+import com.yalantis.ucrop.view.CropImageView;
 
 import java.util.ArrayList;
 

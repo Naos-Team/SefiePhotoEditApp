@@ -41,7 +41,7 @@ public class PhotoCreationFragment extends Fragment {
         gridImage = (GridView) inflate.findViewById(R.id.gridview);
         activity = getActivity();
         if (!Environment.getExternalStorageState().equals("mounted")) {
-            Toast.makeText(getContext(), "Error ! No SDCARD Found !", 1).show();
+            Toast.makeText(getContext(), "Error ! No SDCARD Found !", Toast.LENGTH_SHORT).show();
         } else {
             String file = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString();
             new File(file + "/SelfieCameraPhotoEditor");
